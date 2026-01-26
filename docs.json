@@ -1,0 +1,315 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "mint",
+  "name": "MagicBlock Documentation",
+  "description": "With MagicBlock, anything you imagine is possible. Build unstoppable games, high-speed DeFi, and Web3 apps that run like Web2.",
+  "errors": {
+    "404": {
+      "redirect": false
+    }
+  },
+  "colors": {
+    "primary": "#aa00ff",
+    "light": "#aa00ff",
+    "dark": "#aa00ff"
+
+  },
+  "thumbnails": {
+    "background": "/images/thumbmail-bg.jpg"
+  },
+  "favicon": "/logo/favicon.png",
+  "redirects": [
+    {
+      "source": "/pages/get-started/*",
+      "destination": "/pages/overview/products"
+    }
+  ],
+  "staticPages": [
+    "/status-widget.html"
+  ],
+  "logo": {
+    "light": "/logo/MagicBlock-Logo-Black.png",
+    "dark": "/logo/MagicBlock-Logo-White.png"
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "Github",
+        "href": "https://github.com/magicblock-labs"
+      }
+    ]
+  },
+  "footer": {
+    "socials": {
+      "twitter": "https://twitter.com/magicblock",
+      "github": "https://github.com/magicblock-labs",
+      "linkedin": "https://www.linkedin.com/company/magicblock"
+    }
+  },
+  "integrations": {
+    "ga4": {
+      "measurementId": "G-M3W08J15Y9"
+    }
+  },
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Overview",
+        "pages" : [
+          "pages/overview/products",
+          {
+            "group": "Additional Information",
+            "pages": [
+              "pages/overview/additional-information/whitepaper",
+              "pages/overview/additional-information/security-and-audits",
+              "pages/overview/additional-information/pricing",
+              "pages/overview/additional-information/system-status",
+              "pages/overview/additional-information/request-for-products"
+            ]
+          }
+        ]
+
+
+      },
+      {
+        "tab": "Ephemeral Rollup",
+        "icon": "bolt",
+        "groups": [
+          {
+            "group": "How-to-Guide",
+            "pages": [
+              "pages/ephemeral-rollups-ers/how-to-guide/quickstart",
+              "pages/ephemeral-rollups-ers/how-to-guide/local-development",
+              {
+                "group": "Rust Example",
+                "pages": [
+                  "pages/ephemeral-rollups-ers/how-to-guide/rust-program",
+                  "pages/ephemeral-rollups-ers/how-to-guide/rust-tests"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Reference Material",
+            "pages": [
+              "pages/ephemeral-rollups-ers/introduction/why",
+              {
+                "group": "How it Works",
+                "pages": [
+                  "pages/ephemeral-rollups-ers/introduction/ephemeral-rollup",
+                  "pages/ephemeral-rollups-ers/introduction/magic-router",
+                  {
+                    "group": "Magic Actions",
+                    "pages": [
+                      "pages/ephemeral-rollups-ers/magic-actions/overview",
+                      "pages/ephemeral-rollups-ers/magic-actions/implementation",
+                      "pages/ephemeral-rollups-ers/magic-actions/client",
+                      "pages/ephemeral-rollups-ers/magic-actions/troubleshooting"
+                    ]
+                  }
+                ]
+              },
+              "pages/ephemeral-rollups-ers/introduction/faq"
+              
+              
+            ]
+          },
+          {
+            "group": "API",
+            "pages": [
+              "api-reference/er-api/getRoutes",
+              "api-reference/er-api/getIdentity",
+              "api-reference/er-api/getBlockhashForAccounts",
+              "api-reference/er-api/getSignatureStatuses",
+              "api-reference/er-api/getAccountInfo",
+              "api-reference/er-api/getDelegationStatus"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Private Ephemeral Rollup",
+        "icon": "shield-check",
+        "groups": [
+          {
+            "group": "How-to-Guide",
+            "pages": [
+              "pages/private-ephemeral-rollups-pers/how-to-guide/quickstart",
+              "pages/private-ephemeral-rollups-pers/how-to-guide/access-control"
+            ]
+          },
+          {
+            "group": "Reference Material",
+            "pages": [
+              "pages/private-ephemeral-rollups-pers/introduction/onchain-privacy",
+              "pages/private-ephemeral-rollups-pers/introduction/authorization",
+              "pages/private-ephemeral-rollups-pers/introduction/compliance-framework"
+            ]
+          }
+
+        ]
+      },
+      {
+        "tab": "Verifiable Randomness",
+        "icon": "dice",
+        "groups": [
+          {
+            "group": "How-to-Guide",
+            "pages": [
+              "pages/verifiable-randomness-functions-vrfs/how-to-guide/quickstart",
+              "pages/verifiable-randomness-functions-vrfs/how-to-guide/best-practices"
+            ]
+          },
+          {
+            "group": "Reference Material",
+            "pages": [
+              "pages/verifiable-randomness-functions-vrfs/introduction/why-verifiable-randomness-onchain",
+              {
+                "group": "How it Works",
+                "pages": [
+                  "pages/verifiable-randomness-functions-vrfs/introduction/technical-details",
+                  "pages/verifiable-randomness-functions-vrfs/introduction/security",
+                  "pages/verifiable-randomness-functions-vrfs/introduction/faq"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Templates",
+        "icon": "book",
+        "pages": [
+          "pages/templates/private-payments",
+          "pages/templates/real-time-price-feed",
+          "pages/templates/random-character-generator",
+          "pages/templates/onchain-dice",
+          "pages/templates/counter"
+        ]
+      },
+      {
+        "tab": "Tools",
+        "icon": "screwdriver-wrench",
+        "groups": [
+          {
+            "group": "Tools",
+            "pages": ["pages/tools/introduction"]
+          },
+          {
+            "group": "Wallets & Onramp",
+            "pages": [
+                  "pages/tools/wallets-and-onramp/overview"
+                ]
+          },
+          {
+            "group": "Session Keys",
+            "pages": [
+
+                  "pages/tools/session-keys/introduction",
+                  "pages/tools/session-keys/how-do-session-keys-work",
+                  "pages/tools/session-keys/security",
+                  {
+                    "group": "Getting Started",
+                    "pages": [
+                        "pages/tools/session-keys/integrating-sessions-in-your-program",
+                        "pages/tools/session-keys/installation",
+                        "pages/tools/session-keys/session-provider-and-context",
+                        "pages/tools/session-keys/usage-examples",
+                        "pages/tools/session-keys/use-sessionkey-manager"
+                    ]
+                  }
+
+                ]
+          },
+          {
+            "group": "Oracles",
+            "pages": [
+              "pages/tools/oracle/introduction",
+              "pages/tools/oracle/implementation"
+            ]
+          },
+          {
+            "group": "Cranks",
+            "pages": [
+              "pages/tools/crank/introduction",
+              "pages/tools/crank/implementation"
+            ]
+          },
+          {
+            "group": "BOLT Framework",
+            "pages": [
+              "pages/tools/bolt/introduction",
+              "pages/tools/bolt/mapping",
+              {
+                "group": "Getting Started",
+                "pages": [
+                  "pages/tools/bolt/getting-started/installation",
+                  "pages/tools/bolt/getting-started/hello-bolt",
+                  "pages/tools/bolt/getting-started/create-component",
+                  "pages/tools/bolt/getting-started/create-system",
+                  "pages/tools/bolt/getting-started/world-program"
+                ]
+              }
+            ]
+          },
+
+          {
+            "group": "Solana Unity SDK",
+            "pages": [
+              "pages/tools/solana-unity-sdk/overview",
+              "pages/tools/solana-unity-sdk/contribution-guide",
+              {
+                "group": "Getting Started",
+                "pages": [
+                  "pages/tools/solana-unity-sdk/getting-started/installation",
+                  "pages/tools/solana-unity-sdk/getting-started/configuration",
+                  "pages/tools/solana-unity-sdk/getting-started/sample-scene"
+                ]
+              },
+              {
+                "group": "Core Concepts",
+                "pages": [
+                  "pages/tools/solana-unity-sdk/core-concepts/associated-token-account",
+                  "pages/tools/solana-unity-sdk/core-concepts/transfer-token",
+                  "pages/tools/solana-unity-sdk/core-concepts/transaction-builder",
+                  "pages/tools/solana-unity-sdk/core-concepts/staking",
+                  "pages/tools/solana-unity-sdk/core-concepts/add-signature"
+                ]
+              },
+              {
+                "group": "Guides",
+                "pages": [
+                  "pages/tools/solana-unity-sdk/guides/mint-an-nft",
+                  "pages/tools/solana-unity-sdk/guides/host-your-game",
+                  "pages/tools/solana-unity-sdk/guides/publishing-a-game",
+                  "pages/tools/solana-unity-sdk/guides/dex-integration",
+                  "pages/tools/solana-unity-sdk/guides/jupiter",
+                  "pages/tools/solana-unity-sdk/guides/additional-examples"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "On-chain identity",
+            "pages": ["pages/tools/open-source-programs/SOAR"]
+          }
+        ]
+      }
+    ],
+    
+    "global": {
+      "anchors": [
+        {
+          "anchor": "Tutorials",
+          "href": "https://www.youtube.com/@Magicblock-Labs",
+          "icon": "youtube"
+        },
+        {
+          "anchor": "Community",
+          "href": "https://discord.com/invite/zHFtdVMA6e",
+          "icon": "discord"
+        }
+      ]
+    }
+  }
+}

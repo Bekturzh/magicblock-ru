@@ -1,0 +1,113 @@
+---
+title: Why MagicBlock?
+description: "The high-performance engine for real-time applications on Solana"
+---
+
+<div
+  style={{
+    position: "relative",
+    paddingBottom: "56.25%",
+    height: 0,
+    overflow: "hidden",
+  }}
+>
+  <iframe
+    src="https://www.youtube.com/embed/yfgDZJJvydU?si=3k8ndg9Z69sv6_LE&list=PLWR_ZQiGMS8mIe1kPZe8OfHIbhvZqaM8V"
+    title="Why Build with MagicBlock? Solve Scaling & UX Pain Points with Ephemeral Rollups"
+    style={{
+      position: "absolute",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100%",
+    }}
+    frameBorder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowFullScreen
+    referrerPolicy="strict-origin-when-cross-origin"
+  />
+</div>
+<Card>
+  MagicBlock is an extension of the Solana network designed for high-performance
+  decentralized applications. It enhances Solana’s capabilities while preserving
+  its composability and integrity.
+</Card>
+
+## Why MagicBlock?
+
+While blockchain technology is revolutionizing decentralized applications, it still faces fundamental challenges in:
+
+- **Latency** – Blockchain transaction speeds are too slow for real-time applications.
+- **Cost** – Even "low-fee" blockchains can become expensive at scale.
+- **Scalability** – Current architectures struggle to handle high-throughput applications.
+- **Privacy** – Blockchains are by default public, meaning all data onchain can be read.
+
+MagicBlock solves these issues with an **ephemeral rollup**, enabling developers to build dApps that require **10 ms state transitions**, **gasless transactions**, and **horizontal scaling**. Here's how:
+
+#### Built on Solana's Ecosystem and Performance
+
+MagicBlock operates as a specialized **Solana Virtual Machine (SVM) runtime**, seamlessly integrating with Solana’s base layer. Developers deploying programs on Solana are fully compatible with the ephemeral rollup down to the bytecode, benefiting from the SVM’s high performance and robust ecosystem.
+
+<img class="w-full h-auto max-w-5xl" src="/images/magicblock-solana.png" />
+
+#### Overcoming Limitations in Scaling and Cost
+
+Traditional rollups and Solana’s current execution model have inherent constraints when handling resource-intensive applications. MagicBlock removes these limitations by enabling:
+
+- **Ultra-Low Latency (10 ms Block Time)**: Solana's default 400 ms block time is too slow for real-time applications. MagicBlock allows developers to customize execution environments while maintaining full compatibility.
+- **State Integrity Without Fragmentation**: Traditional rollups fragment application states across multiple environments, making interoperability difficult. MagicBlock prevents this by utilizing specialized RPC providers that **route and process transactions in parallel** between Solana’s base layer and ephemeral rollups.
+- **Near-Zero Transaction Fees**: Even Solana’s low fees (~$0.01 per transaction) can be expensive at scale. MagicBlock drastically reduces costs, enabling minimal or **zero-fee transactions**.
+- **Horizontal Scalability**: Standard rollups struggle to scale efficiently. MagicBlock enables **horizontal auto-scaling**, seamlessly spinning up multiple ephemeral rollups to process millions of transactions per second.
+
+### Where do I start?
+
+<CardGroup cols={2}>
+  <Card
+    title="Ephemeral Rollup"
+    icon="bolt"
+    href="/pages/get-started/introduction/ephemeral-rollup"
+    iconType="duotone"
+  >
+    Learn how Ephemeral Rollups works
+  </Card>
+  <Card
+    title="Magic Router"
+    icon="router"
+    href="/pages/get-started/introduction/magic-router"
+    iconType="duotone"
+  >
+    Learn how Magic Router works
+  </Card>
+  <Card
+    title="Build"
+    icon="hammer"
+    href="/pages/get-started/how-integrate-your-program/overview"
+    iconType="duotone"
+  >
+    Try out with Rust, Anchor, and Typescript
+  </Card>
+  <Card
+    title="Use Cases"
+    icon="star"
+    href="/pages/get-started/use-cases/introduction"
+    iconType="duotone"
+  >
+    Discover new ideas from examples
+  </Card>
+  <Card
+    title="Frameworks and SDKs"
+    icon="code"
+    href="/pages/tools/introduction"
+    iconType="duotone"
+  >
+    Dive into Frameworks and SDKs
+  </Card>
+  <Card
+    title="Privacy"
+    icon="shield-check"
+    href="/pages/get-started/use-cases/privacy"
+    iconType="duotone"
+  >
+    Build private, verifiable applications with TEEs
+  </Card>
+</CardGroup>
