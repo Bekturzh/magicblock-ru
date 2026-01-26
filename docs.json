@@ -52,13 +52,27 @@
     }
   },
   "navigation": {
+    "global": {
+      "anchors": [
+        {
+          "anchor": "Обучение",
+          "icon": "youtube",
+          "href": "https://www.youtube.com/@Magicblock-Labs"
+        },
+        {
+          "anchor": "Сообщество ",
+          "icon": "discord",
+          "href": "https://discord.com/invite/zHFtdVMA6e"
+        }
+      ]
+    },
     "tabs": [
       {
-        "tab": "Overview",
-        "pages" : [
+        "tab": "Обзор",
+        "pages": [
           "pages/overview/products",
           {
-            "group": "Additional Information",
+            "group": "Дополнительная информация",
             "pages": [
               "pages/overview/additional-information/whitepaper",
               "pages/overview/additional-information/security-and-audits",
@@ -68,11 +82,9 @@
             ]
           }
         ]
-
-
       },
       {
-        "tab": "Ephemeral Rollup",
+        "tab": "Эфемерный роллап",
         "icon": "bolt",
         "groups": [
           {
@@ -110,8 +122,6 @@
                 ]
               },
               "pages/ephemeral-rollups-ers/introduction/faq"
-              
-              
             ]
           },
           {
@@ -128,7 +138,7 @@
         ]
       },
       {
-        "tab": "Private Ephemeral Rollup",
+        "tab": "Приватный эфемерный роллап",
         "icon": "shield-check",
         "groups": [
           {
@@ -146,11 +156,10 @@
               "pages/private-ephemeral-rollups-pers/introduction/compliance-framework"
             ]
           }
-
         ]
       },
       {
-        "tab": "Verifiable Randomness",
+        "tab": "Проверяемая случайная величина",
         "icon": "dice",
         "groups": [
           {
@@ -177,7 +186,7 @@
         ]
       },
       {
-        "tab": "Templates",
+        "tab": "Шаблоны",
         "icon": "book",
         "pages": [
           "pages/templates/private-payments",
@@ -188,38 +197,38 @@
         ]
       },
       {
-        "tab": "Tools",
+        "tab": "Инструменты",
         "icon": "screwdriver-wrench",
         "groups": [
           {
             "group": "Tools",
-            "pages": ["pages/tools/introduction"]
+            "pages": [
+              "pages/tools/introduction"
+            ]
           },
           {
             "group": "Wallets & Onramp",
             "pages": [
-                  "pages/tools/wallets-and-onramp/overview"
-                ]
+              "pages/tools/wallets-and-onramp/overview"
+            ]
           },
           {
             "group": "Session Keys",
             "pages": [
-
-                  "pages/tools/session-keys/introduction",
-                  "pages/tools/session-keys/how-do-session-keys-work",
-                  "pages/tools/session-keys/security",
-                  {
-                    "group": "Getting Started",
-                    "pages": [
-                        "pages/tools/session-keys/integrating-sessions-in-your-program",
-                        "pages/tools/session-keys/installation",
-                        "pages/tools/session-keys/session-provider-and-context",
-                        "pages/tools/session-keys/usage-examples",
-                        "pages/tools/session-keys/use-sessionkey-manager"
-                    ]
-                  }
-
+              "pages/tools/session-keys/introduction",
+              "pages/tools/session-keys/how-do-session-keys-work",
+              "pages/tools/session-keys/security",
+              {
+                "group": "Getting Started",
+                "pages": [
+                  "pages/tools/session-keys/integrating-sessions-in-your-program",
+                  "pages/tools/session-keys/installation",
+                  "pages/tools/session-keys/session-provider-and-context",
+                  "pages/tools/session-keys/usage-examples",
+                  "pages/tools/session-keys/use-sessionkey-manager"
                 ]
+              }
+            ]
           },
           {
             "group": "Oracles",
@@ -252,7 +261,6 @@
               }
             ]
           },
-
           {
             "group": "Solana Unity SDK",
             "pages": [
@@ -291,25 +299,12 @@
           },
           {
             "group": "On-chain identity",
-            "pages": ["pages/tools/open-source-programs/SOAR"]
+            "pages": [
+              "pages/tools/open-source-programs/SOAR"
+            ]
           }
         ]
       }
-    ],
-    
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Tutorials",
-          "href": "https://www.youtube.com/@Magicblock-Labs",
-          "icon": "youtube"
-        },
-        {
-          "anchor": "Community",
-          "href": "https://discord.com/invite/zHFtdVMA6e",
-          "icon": "discord"
-        }
-      ]
-    }
+    ]
   }
 }
