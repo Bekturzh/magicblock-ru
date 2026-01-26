@@ -88,12 +88,12 @@
         "icon": "bolt",
         "groups": [
           {
-            "group": "How-to-Guide",
+            "group": "Руководство пользователя",
             "pages": [
               "pages/ephemeral-rollups-ers/how-to-guide/quickstart",
               "pages/ephemeral-rollups-ers/how-to-guide/local-development",
               {
-                "group": "Rust Example",
+                "group": "Примеры для Rust",
                 "pages": [
                   "pages/ephemeral-rollups-ers/how-to-guide/rust-program",
                   "pages/ephemeral-rollups-ers/how-to-guide/rust-tests"
@@ -102,16 +102,16 @@
             ]
           },
           {
-            "group": "Reference Material",
+            "group": "Справочные материалы",
             "pages": [
               "pages/ephemeral-rollups-ers/introduction/why",
               {
-                "group": "How it Works",
+                "group": "Как это работает ",
                 "pages": [
                   "pages/ephemeral-rollups-ers/introduction/ephemeral-rollup",
                   "pages/ephemeral-rollups-ers/introduction/magic-router",
                   {
-                    "group": "Magic Actions",
+                    "group": "Магические действия ",
                     "pages": [
                       "pages/ephemeral-rollups-ers/magic-actions/overview",
                       "pages/ephemeral-rollups-ers/magic-actions/implementation",
@@ -142,14 +142,14 @@
         "icon": "shield-check",
         "groups": [
           {
-            "group": "How-to-Guide",
+            "group": "Руководство пользователя",
             "pages": [
               "pages/private-ephemeral-rollups-pers/how-to-guide/quickstart",
               "pages/private-ephemeral-rollups-pers/how-to-guide/access-control"
             ]
           },
           {
-            "group": "Reference Material",
+            "group": "Справочные материалы ",
             "pages": [
               "pages/private-ephemeral-rollups-pers/introduction/onchain-privacy",
               "pages/private-ephemeral-rollups-pers/introduction/authorization",
@@ -163,14 +163,14 @@
         "icon": "dice",
         "groups": [
           {
-            "group": "How-to-Guide",
+            "group": "Руководства пользователя ",
             "pages": [
               "pages/verifiable-randomness-functions-vrfs/how-to-guide/quickstart",
               "pages/verifiable-randomness-functions-vrfs/how-to-guide/best-practices"
             ]
           },
           {
-            "group": "Reference Material",
+            "group": "Справочные материалы",
             "pages": [
               "pages/verifiable-randomness-functions-vrfs/introduction/why-verifiable-randomness-onchain",
               {
@@ -201,19 +201,19 @@
         "icon": "screwdriver-wrench",
         "groups": [
           {
-            "group": "Tools",
+            "group": "Инструменты ",
             "pages": [
               "pages/tools/introduction"
             ]
           },
           {
-            "group": "Wallets & Onramp",
+            "group": "Кошельки и вход в сеть ",
             "pages": [
               "pages/tools/wallets-and-onramp/overview"
             ]
           },
           {
-            "group": "Session Keys",
+            "group": "Сессионные ключи",
             "pages": [
               "pages/tools/session-keys/introduction",
               "pages/tools/session-keys/how-do-session-keys-work",
@@ -231,7 +231,7 @@
             ]
           },
           {
-            "group": "Oracles",
+            "group": "Оракулы",
             "pages": [
               "pages/tools/oracle/introduction",
               "pages/tools/oracle/implementation"
@@ -245,7 +245,7 @@
             ]
           },
           {
-            "group": "BOLT Framework",
+            "group": "Фреймворк BOLT",
             "pages": [
               "pages/tools/bolt/introduction",
               "pages/tools/bolt/mapping",
@@ -298,7 +298,7 @@
             ]
           },
           {
-            "group": "On-chain identity",
+            "group": "Ончейн-идентичность",
             "pages": [
               "pages/tools/open-source-programs/SOAR"
             ]

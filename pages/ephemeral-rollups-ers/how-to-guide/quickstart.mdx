@@ -1,6 +1,6 @@
 ---
-title: "Quickstart"
-description: "Any Solana program can be upgraded with Ephemeral Rollups by adding delegation capabilities."
+title: "Быстрый старт"
+description: "Любая программа Solana может быть обновлена с помощью Эфемерных Роллапов путём добавления возможностей делегирования."
 ---
 
 import Endpoints from "/snippets/endpoints.mdx";
@@ -28,90 +28,58 @@ import QuickAccessERFooter from "/snippets/quick-access-er-footer.mdx";
 
 ---
 
-<div
-  style={{
-    position: "relative",
-    paddingBottom: "56.25%",
-    height: 0,
-    overflow: "hidden",
-  }}
->
-  <iframe
-    src="https://www.youtube.com/embed/qwu2RBKyFiw?si=PMg-3UbRfvvbrs7C&list=PLWR_ZQiGMS8mIe1kPZe8OfHIbhvZqaM8V"
-    title="Build a real-time Anchor Counter on Solana with MagicBlock's Ephemeral Rollup | Tutorial"
-    style={{
-      position: "absolute",
-      top: 0,
-      left: 0,
-      width: "100%",
-      height: "100%",
-    }}
-    frameBorder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    allowFullScreen
-    referrerPolicy="strict-origin-when-cross-origin"
-  />
+<div style={{ position:"relative",paddingBottom:"56.25%",height:0,overflow:"hidden" }}>
+<iframe src="https://www.youtube.com/embed/qwu2RBKyFiw?si=PMg-3UbRfvvbrs7C&list=PLWR_ZQiGMS8mIe1kPZe8OfHIbhvZqaM8V" title="Build a real-time Anchor Counter on Solana with MagicBlock's Ephemeral Rollup | Tutorial" style={{ position:"absolute",top:0,left:0,width:"100%",height:"100%" }} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen referrerPolicy="strict-origin-when-cross-origin" />
+
 </div>
 
 ---
 
-## Step-By-Step Guide
+## Пошаговое руководство
 
-Build your program and upgrade it with delegation hooks with MagicBlock's Delegation Program `DELeGGvXpWV2fqJUhqcF5ZSYMS4JTLjteaAMARRSaeSh`:
+Создайте вашу программу и обновите её, добавив хуки делегирования с помощью Программы Делегирования MagicBlock. `DELeGGvXpWV2fqJUhqcF5ZSYMS4JTLjteaAMARRSaeSh`:
 
 <Steps>
   <Step title={<a href="#1-write-program">Write your program</a>}>
-    Write your Solana program as you normally would.
+    Напишите вашу программу для Solana так, как вы обычно это делаете.
   </Step>
-  <Step
-    title={
-      <a href="#2-delegate">
-        Add delegation and undelegation hooks in your program
-      </a>
-    }
-  >
-    Add CPI hooks to delegate, commit and undelegate state accounts through
-    Ephemeral Rollup sessions.
+  <Step title='
+<a href="#2-delegate">
+Add delegation and undelegation hooks in your program
+</a>
+'>
+    Добавьте CPI-хуки для делегирования, фиксации и анделегирования аккаунтов состояния через сессии Эфемерного Роллапа.
+
     <Validators />
   </Step>
   <Step title={<a href="#3-deploy">Deploy your program on Solana.</a>}>
-    Deploy your program directly on Solana using Anchor or Solana CLI.
+    Разверните вашу программу напрямую в Solana с помощью Anchor или Solana CLI
   </Step>
-  <Step
-    title={
-      <a href="#4-test">
-        Ready to execute transactions for delegation and real-time speed
-      </a>
-    }
-  >
-    Send transactions without modifications on-chain and off-chain that also
-    comply with the SVM RPC specification.
+  <Step title='
+<a href="#4-test">
+Ready to execute transactions for delegation and real-time speed
+</a>
+'>
+    Отправляйте транзакции как в блокчейн, так и вне его без изменений, при этом соблюдая спецификацию SVM RPC..
   </Step>
 </Steps>
 
 ---
 
-## Counter Example
+## Пример счетчика 
 
 <img
   src="/images/gifs/counter-420w.gif"
   alt="Counter GIF"
-  style={{
-    width: "100%",
-    maxWidth: "420px",
-    height: "auto",
-    objectFit: "contain",
-    borderRadius: "8px",
-  }}
+  style={{ width:"100%",maxWidth:"420px",height:"auto",objectFit:"contain",borderRadius:"8px" }}
 />
 
 <Software />
 
-### Code Snippets
+### Фрагменты кода
 
 <Tabs>
-  <Tab title="1. Write program">
-
+  <Tab title="1. Напиши программу">
     The program implements two main instructions:
 
     1. `initialize`: Sets the counter to 0
@@ -123,17 +91,18 @@ Build your program and upgrade it with delegation hooks with MagicBlock's Delega
     2. `CommitAndUndelegate`: Schedules sync of counter from ER to Base Layer, and undelegates counter on ER (called on ER)
     3. `Commit`: Schedules sync of counter from ER to Base Layer (called on ER)
     4. `Undelegate`:
-        - Schedules sync and undelegation of counter (called on ER)
-        - Undelegation triggered through callback instruction injected through #[ephemeral] (called on Base Layer through validator CPI)
+       - Schedules sync and undelegation of counter (called on ER)
+       - Undelegation triggered through callback instruction injected through #[ephemeral] (called on Base Layer through validator CPI)
+
     <WriteProgramCode />
 
     Nothing special here, just a simple Anchor program that increments a counter. The only difference is that we're adding the `ephemeral` macro for undelegation and `delegate` macro to inject some useful logic to interact with the delegation program.
 
     [⬆️ Back to Top](#code-snippets)
-
   </Tab>
-  <Tab title="2. Delegate">
-      <Validators />
+  <Tab title="2. Делегировать ">
+    <Validators />
+
     1. Add `ephemeral-rollups-sdk` with Anchor features to your program
 
     ```bash
@@ -155,37 +124,38 @@ Build your program and upgrade it with delegation hooks with MagicBlock's Delega
       };
     ```
 
-    2.  Add `delegate` macro and instruction, `ephemeral` macro, and `undelegate` instruction to your program. Specify your preferred delegation config such as auto commits and specific ER validator:
+    2. Add `delegate` macro and instruction, `ephemeral` macro, and `undelegate` instruction to your program. Specify your preferred delegation config such as auto commits and specific ER validator:
+
     <DelegateCode />
+
     <CommitCode />
+
     <UndelegateCode />
 
     <DelegationInfo />
 
     [⬆️ Back to Top](#code-snippets)
-
   </Tab>
-
-  <Tab title="3. Deploy">
-    Now you’re program is upgraded and ready! Build and deploy to the desired
-    cluster:
+  <Tab title="3. Развернуть">
+    Now you’re program is upgraded and ready! Build and deploy to the desired cluster:
 
     ```bash
     anchor build && anchor deploy
     ```
 
     [⬆️ Back to Top](#code-snippets)
-
   </Tab>
+  <Tab title="4. Протестировать">
+    Готово к выполнению транзакций для делегирования с поддержкой обработки в реальном времени
 
-  <Tab title="4. Test">
-    Ready to execute transactions for delegation and real-time speed.
     <Validators />
 
     ```bash
     anchor test --skip-build --skip-deploy --skip-local-validator
     ```
+
     Run the following test:
+
     <TestCode />
 
     To make it easier to integrate via the frontend, we created the [Magic Router](/pages/ephemeral-rollups-ers/introduction/magic-router). You send transactions directly to the magic router, and we can determine for you whether it should be routed to the [Ephemeral Rollup](/pages/ephemeral-rollups-ers/introduction/ephemeral-rollup) or base layer.
@@ -193,9 +163,7 @@ Build your program and upgrade it with delegation hooks with MagicBlock's Delega
     <Endpoints />
 
     [⬆️ Back to Top](#code-snippets)
-
   </Tab>
-
 </Tabs>
 
 ---
@@ -205,46 +173,39 @@ Build your program and upgrade it with delegation hooks with MagicBlock's Delega
 <Tabs>
   <Tab title="Resize PDA">
     When resizing a delegated PDA:
+
     - PDA must have enough lamports to remain rent-exempt for the new account size.
     - If additional lamports are needed, the **payer account must be delegated** to provide the difference.
     - PDA must be owned by the program, and the transaction must include any signer(s) required for transferring lamports.
     - Use `system_instruction::allocate`
 
     <ResizeCode />
-    [⬆️ Back to Top](#advanced-code-snippets)
 
+    [⬆️ Back to Top](#advanced-code-snippets)
   </Tab>
   <Tab title="Magic Router">
-
     <MagicRouterSDK />
-    [⬆️ Back to Top](#advanced-code-snippets)
 
+    [⬆️ Back to Top](#advanced-code-snippets)
   </Tab>
   <Tab title="Magic Action">
-      ### Quick Access
+    ### Quick Access
 
-      <CardGroup cols={2}>
-        <Card
-          title="Magic Actions Example"
-          icon="code"
-          href="https://github.com/magicblock-labs/magicblock-engine-examples/tree/main/magic-actions"
-          iconType="duotone"
-        >
-          Explore reference implementation on GitHub
-        </Card>
-      </CardGroup>
-    Attach one or more instructions that run automatically on the Solana base layer immediately after an Ephemeral Rollup
-    (ER) commit.
-    [Learn more about Magic Action](/pages/ephemeral-rollups-ers/magic-actions/overview.mdx)
+    <CardGroup cols={2}>
+      <Card title="Magic Actions Example" icon="code" iconType="duotone" href="https://github.com/magicblock-labs/magicblock-engine-examples/tree/main/magic-actions">
+        Explore reference implementation on GitHub
+      </Card>
+    </CardGroup>
+    Attach one or more instructions that run automatically on the Solana base layer immediately after an Ephemeral Rollup (ER) commit. [Learn more about Magic Action](/pages/ephemeral-rollups-ers/magic-actions/overview.mdx)
+
     <MagicActionExample />
 
     [⬆️ Back to Top](#advanced-code-snippets)
-
   </Tab>
   <Tab title="On-Curve Delegation">
     <OncurveDelegation />
-    [⬆️ Back to Top](#advanced-code-snippets)
 
+    [⬆️ Back to Top](#advanced-code-snippets)
   </Tab>
 </Tabs>
 
