@@ -7,11 +7,11 @@ import PerCards from "/snippets/per-cards.mdx";
 
 ---
 
-**MagicBlock Приватный Эфемер Роллап **
+\*\*MagicBlock Приватный Эфемер Роллап \*\*
 
 MagicBlock внедряет высокопроизводительные универсальные среды доверенного исполнения (Trusted Execution Environments, TEE) на Solana. Мы называем это **Приватный Эфемер Роллап**.
 
-Используя гарантии безопасности архитектуры **Intel Trust Domain Extension (TDX)** в сочетании с технологией **Эфемерный Роллап **от MagicBlock, стало возможным запускать чувствительную логику внутри защищённой аппаратной среды, сохраняя при этом **композируемость** и **скорость Solana**.
+Используя гарантии безопасности архитектуры **Intel Trust Domain Extension (TDX)** в сочетании с технологией \*\*Эфемерный Роллап \*\*от MagicBlock, стало возможным запускать чувствительную логику внутри защищённой аппаратной среды, сохраняя при этом **композируемость** и **скорость Solana**.
 
 Впервые разработчики могут создавать приложения, которые одновременно:
 
@@ -33,7 +33,7 @@ Trusted Execution Environment действует как сейф внутри п
 
 Это означает, что переводы, вызовы программ и взаимодействия могут оставаться конфиденциальными и не транслироваться публично, если это необходимо.
 
-### **Почему TEE (**Среды доверенного исполнения)**?**
+### ****Почему TEE (Среды доверенного исполнения)?****
 
 Существуют различные подходы к обеспечению конфиденциальности в блокчейнах. Каждый из них имеет свои преимущества и ограничения.
 
@@ -65,4 +65,17 @@ import PerEndpoint from "/snippets/per-endpoint.mdx";
 
 ---
 
-<PerCards />
+<Columns cols={2}>
+  <Card title="Контроль доступа" icon="lock" iconType="duotone" href="/pages/private-ephemeral-rollups-pers/how-to-guide/access-control">
+    Детализированный контроль доступа.
+  </Card>
+  <Card title="Конфиденциальность на блокчейне" icon="user-helmet-safety" iconType="duotone" href="/pages/private-ephemeral-rollups-pers/introduction/onchain-privacy">
+    Механизмы и концепции обеспечения конфиденциальности
+  </Card>
+  <Card title="Авторизация" icon="key" iconType="duotone" href="/pages/private-ephemeral-rollups-pers/introduction/authorization">
+    Система авторизации
+  </Card>
+  <Card title="Система соответствия требованиям" icon="solar-system" iconType="duotone" href="/pages/private-ephemeral-rollups-pers/introduction/compliance-framework">
+    Стандарты и руководства по соблюдению требований
+  </Card>
+</Columns>
