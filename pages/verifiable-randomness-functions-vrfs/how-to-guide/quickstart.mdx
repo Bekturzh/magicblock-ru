@@ -111,7 +111,76 @@ Add request and consume randomness instructions.
 
 ---
 
-## Solana Explorer
+### **Solana Explorer**
+
+Получайте информацию о ваших транзакциях и аккаунтах в сети Solana:
+
+<Columns cols={2}>
+  <Card title="Solana Explorer" icon="search" iconType="duotone" href="https://explorer.solana.com/">
+    Официальный обозреватель Solana
+  </Card>
+  <Card title="Solscan" icon="search" iconType="sharp-solid" href="https://solscan.io/">
+    Обозреватель блокчейна Solana
+  </Card>
+</Columns>
+
+### **Провайдеры Solana RPC**
+
+Отправляйте транзакции и запросы через существующих RPC-провайдеров:
+
+<Columns cols={2}>
+  <Card title="Solana" icon="star" iconType="sharp-solid" href="https://solana.com/docs/references/clusters#on-a-high-level">
+    Бесплатные публичные ноды
+  </Card>
+  <Card title="Helius" icon="star-of-life" href="https://www.helius.dev/solana-rpc-nodes">
+    Бесплатные общие ноды
+  </Card>
+  <Card title="Triton" icon="wand-magic-sparkles" href="https://triton.one/solana">
+    Выделенные высокопроизводительные ноды
+  </Card>
+</Columns>
+
+### **Панель валидаторов Solana**
+
+Следите за обновлениями инфраструктуры валидаторов Solana в реальном времени:
+
+<Columns cols={2}>
+  <Card title="Solana Beach" icon="umbrella-beach" iconType="duotone" href="https://solanabeach.io/">
+    Аналитика по валидаторам
+  </Card>
+  <Card title="Validators App" icon="cloud-arrow-down" iconType="duotone" href="https://www.validators.app/">
+    Метрики валидаторов
+  </Card>
+</Columns>
+
+### **Статус серверов**
+
+Подпишитесь на обновления статуса серверов Solana и MagicBlock:
+
+<Columns cols={2}>
+  <Card title="Solana Status" icon="server" href="https://status.solana.com/">
+    Подписка на обновления статуса серверов Solana
+  </Card>
+  <Card title="MagicBlock Status" icon="heart-pulse" iconType="duotone" href="/pages/overview/additional-information/server-status">
+    Подписка на статус серверов MagicBlock
+  </Card>
+</Columns>
+
+---
+
+### **Продукты MagicBlock**
+
+<Columns cols={2}>
+  <Card title="Эфемерный роллап (ER)" icon="poo-storm" iconType="duotone" href="/pages/ephemeral-rollups-ers/how-to-guide/quickstart">
+    Выполнение транзакций в реальном времени без комиссий и с высокой безопасностью в сети Solana.
+  </Card>
+  <Card title="Приватный эфемерный роллап (PER)" icon="user-helmet-safety" href="/pages/private-ephemeral-rollups-pers/how-to-guide/quickstart">
+    Защита конфиденциальных данных с помощью приватных вычислений.
+  </Card>
+  <Card title="Проверяемая функция случайности (VRF)" icon="random" href="/pages/verifiable-randomness-functions-vrfs/how-to-guide/quickstart">
+    Генерация доказуемо честной случайности напрямую в блокчейне.
+  </Card>
+</Columns>
 
 import Endpoints from "/snippets/endpoints.mdx";
 import Validators from "/snippets/validators.mdx";
@@ -120,35 +189,3 @@ import ExplorerCards from "/snippets/explorer-cards.mdx";
 import RpcCards from "/snippets/rpc-cards.mdx";
 import ValidatorCards from "/snippets/validator-cards.mdx";
 import ServerStatusCards from "/snippets/serverstatus-cards.mdx";
-
-Получайте информацию о ваших транзакциях и аккаунтах на Solana:
-
-<ExplorerCards />
-
-## Поставщики RPC Solana
-
-Отправляйте транзакции и запросы через существующих поставщиков RPC:
-
-<RpcCards />
-
-## Панель управления валидатора Solana
-
-Отслеживайте обновления инфраструктуры валидаторов Solana в реальном времени:
-
-<ValidatorCards />
-
-## Подписки на статус серверов
-
-Подписывайтесь на статус серверов Solana и MagicBlock:
-
-<ServerStatusCards />
-
----
-
-## Продукты MagicBlock
-
-import ProductCards from "/snippets/product-cards.mdx";
-
-<ProductCards />
-
----
