@@ -96,6 +96,17 @@
                 "group": "Примеры для Rust",
                 "pages": [
                   "pages/ephemeral-rollups-ers/how-to-guide/rust-program",
+                  {
+                    "group": "API",
+                    "pages": [
+                      "api-reference/er-api/getRoutes",
+                      "api-reference/er-api/getIdentity",
+                      "api-reference/er-api/getBlockhashForAccounts",
+                      "api-reference/er-api/getSignatureStatuses",
+                      "api-reference/er-api/getAccountInfo",
+                      "api-reference/er-api/getDelegationStatus"
+                    ]
+                  },
                   "pages/ephemeral-rollups-ers/how-to-guide/rust-tests"
                 ]
               }
@@ -111,7 +122,7 @@
                   "pages/ephemeral-rollups-ers/introduction/ephemeral-rollup",
                   "pages/ephemeral-rollups-ers/introduction/magic-router",
                   {
-                    "group": "Магические действия ",
+                    "group": "Magic Actions ",
                     "pages": [
                       "pages/ephemeral-rollups-ers/magic-actions/overview",
                       "pages/ephemeral-rollups-ers/magic-actions/implementation",
@@ -122,17 +133,6 @@
                 ]
               },
               "pages/ephemeral-rollups-ers/introduction/faq"
-            ]
-          },
-          {
-            "group": "API",
-            "pages": [
-              "api-reference/er-api/getRoutes",
-              "api-reference/er-api/getIdentity",
-              "api-reference/er-api/getBlockhashForAccounts",
-              "api-reference/er-api/getSignatureStatuses",
-              "api-reference/er-api/getAccountInfo",
-              "api-reference/er-api/getDelegationStatus"
             ]
           }
         ]

@@ -1,58 +1,46 @@
 ---
-title: Introduction
-description: Automatically execute base-layer actions while Delegated
+description: "Автоматическое выполнение действий на базовом слое во время делегирования"
+title: "Введение"
 ---
 
 import DemoCards from "/snippets/demo-cards.mdx";
 
 ---
 
-### Quick Access
+### Быстрый Доступ 
 
 <CardGroup cols={2}>
-  <Card
-    title="Magic Actions Example"
-    icon="code"
-    href="https://github.com/magicblock-labs/magicblock-engine-examples/tree/main/magic-actions"
-    iconType="duotone"
-  >
-    Explore reference implementation on GitHub
+  <Card title="Примеры Magic Actions " icon="code" iconType="duotone" href="https://github.com/magicblock-labs/magicblock-engine-examples/tree/main/magic-actions">
+    Изучите эталонную реализацию на GitHub
   </Card>
 </CardGroup>
 
 ---
 
-### What are Magic Actions?
+## **Что такое Magic Actions?**
 
-Magic Actions let you attach one or more call instructions that run automatically on the Solana base layer immediately after an Ephemeral Rollup
-(ER) commit. Use committed state as inputs to orchestrate multi-step workflows in
-a single transaction.
+Magic Actions позволяют прикреплять одну или несколько инструкций вызова, которые выполняются автоматически на базовом слое Solana сразу после коммита в Ephemeral Rollup (ER). Используйте зафиксированное состояние в качестве входных данных для организации многошаговых рабочих процессов в одной транзакции.
 
-- **State sync**: propagate ER changes to base-layer accounts
-- **Cross-program composition**: invoke other programs after commit
-- **Automated workflows**: chain complex operations from one commit
-- **Event-driven actions**: branch logic based on committed state
+- **Синхронизация состояния:** распространяйте изменения ER на аккаунты базового слоя
+- **Композиция между программами:** вызывайте другие программы после коммита
+- **Автоматизированные рабочие процессы:** цепочка сложных операций из одного коммита
+- **Событийно-ориентированные действия:** ветвление логики на основе зафиксированного состояния
 
-### How it works
+**Как это работает:**
 
-1. Delegate accounts to an Ephemeral Rollup
-2. Execute low-latency transactions on Ephemeral Rollup
-3. Commit to base layer with attached instruction actions while staying delegated
-4. Handlers execute automatically using the freshly committed state
+1. Делегируйте аккаунты в Ephemeral Rollup
+2. Выполняйте транзакции с низкой задержкой в Ephemeral Rollup
+3. Коммитьте на базовый слой с прикреплёнными инструкциями действий, оставаясь делегированным
+4. Обработчики выполняются автоматически, используя только что зафиксированное состояние
 
 ---
 
-### See also
+### Так же 
 
-Magic Action work along with Ephemeral Rollups.
+Magic Actions работают вместе с Эфемер Роллап.
 
 <CardGroup cols={2}>
-  <Card
-    title="Ephemeral Rollups"
-    icon="bolt"
-    href="/pages/ephemeral-rollups-ers/introduction/ephemeral-rollup"
-    iconType="duotone"
-  >
-    Delegation, Commitment & Undelegation
+  <Card title="Эфемер Роллапы" icon="bolt" iconType="duotone" href="/pages/ephemeral-rollups-ers/introduction/ephemeral-rollup">
+    Делегирование, фиксация и отмена делегирования 
   </Card>
 </CardGroup>
