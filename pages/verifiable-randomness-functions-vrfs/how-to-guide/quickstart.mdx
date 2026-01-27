@@ -3,14 +3,6 @@ title: "Быстрый старт "
 description: "Узнайте, как запрашивать и использовать проверяемую случайность (verifiable randomness) в сети с помощью MagicBlock VRF SDK на Solana."
 ---
 
-import Endpoints from "/snippets/endpoints.mdx";
-import Validators from "/snippets/validators.mdx";
-import Software from "/snippets/software.mdx";
-import ExplorerCards from "/snippets/explorer-cards.mdx";
-import RpcCards from "/snippets/rpc-cards.mdx";
-import ValidatorCards from "/snippets/validator-cards.mdx";
-import ServerStatusCards from "/snippets/serverstatus-cards.mdx";
-
 import InitializeCode from "/snippets/roll-dice-code/initialize.mdx";
 import RequestConsumeRandomnessCode from "/snippets/roll-dice-code/request-consume-randomness.mdx";
 import TestCode from "/snippets/roll-dice-code/test.mdx";
@@ -32,10 +24,10 @@ import QuickAccessVRF from "/snippets/quick-access-vrf.mdx";
     Пишите вашу программу на Solana как обычно.
   </Step>
   <Step title='
-    <a href="#2-request-%26-consume-randomnness">
-      Add request and consume randomness instructions.
-    </a>
-  '>
+<a href="#2-request-%26-consume-randomnness">
+Add request and consume randomness instructions.
+</a>
+'>
     Добавьте CPI-хуки, которые запрашивают и используют случайность через обратный вызов от проверенного оракула.
   </Step>
   <Step title={<a href="#3-deploy">Deploy your program on Solana</a>}>
@@ -83,7 +75,7 @@ import QuickAccessVRF from "/snippets/quick-access-vrf.mdx";
     use ephemeral_vrf_sdk::types::SerializableAccountMeta;
     ```
 
-    2. **Добавьте инструкции **`roll_dice`**для запроса случайности и ** `callback_roll_dice`**для её использования, вместе с соответствующим контекстом:** 
+    2. \*\*Добавьте инструкции \*\*`roll_dice`\*\*для запроса случайности и \*\* `callback_roll_dice`**для её использования, вместе с соответствующим контекстом:**
 
     <RequestConsumeRandomnessCode />
 
@@ -121,6 +113,14 @@ import QuickAccessVRF from "/snippets/quick-access-vrf.mdx";
 
 ## Solana Explorer
 
+import Endpoints from "/snippets/endpoints.mdx";
+import Validators from "/snippets/validators.mdx";
+import Software from "/snippets/software.mdx";
+import ExplorerCards from "/snippets/explorer-cards.mdx";
+import RpcCards from "/snippets/rpc-cards.mdx";
+import ValidatorCards from "/snippets/validator-cards.mdx";
+import ServerStatusCards from "/snippets/serverstatus-cards.mdx";
+
 Получайте информацию о ваших транзакциях и аккаунтах на Solana:
 
 <ExplorerCards />
@@ -145,7 +145,7 @@ import QuickAccessVRF from "/snippets/quick-access-vrf.mdx";
 
 ---
 
-## Продукты MagicBlock 
+## Продукты MagicBlock
 
 import ProductCards from "/snippets/product-cards.mdx";
 
