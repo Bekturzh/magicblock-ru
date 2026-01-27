@@ -1,11 +1,11 @@
 ---
-title: "Security"
-description: "MagicBlock's VRF program is audited and generates verifiable randomness"
+title: "Безопасность"
+description: "Программа VRF (Проверяемая Случайность) от MagicBlock прошла аудит и генерирует проверяемую случайность."
 ---
 
-MagicBlock exposes randomness through [**VRF Program**](https://github.com/magicblock-labs/ephemeral-vrf/) – a Solana VRF implementation that uses a network of oracles to compute and verify random values. The protocol follows [RFC&nbsp;9381](https://datatracker.ietf.org/doc/html/rfc9381), leveraging Curve25519's Ristretto group and Schnorr‑style signatures for proofs. See the [Technical Details](./technical-details) page for integration specifics.
+**MagicBlock предоставляет случайность через VRF Program — реализацию VRF на Solana, которая использует сеть оракулов для вычисления и проверки случайных значений. Протокол следует RFC 9381, используя группу Ristretto Curve25519 и подписи в стиле Schnorr для доказательств. Для деталей интеграции см. страницу «Технические детали».**
 
-Upon randomness request, the VRF program computes a [unique hashId](https://github.com/magicblock-labs/ephemeral-vrf/blob/main/program/src/request_randomness.rs#L71) from various inputs and stores it in the onchain oracle queue:
+При запросе случайности программа VRF вычисляет уникальный `hashId` на основе различных входных данных и сохраняет его в onchain очереди оракулов:
 
 ```rust
     let combined_hash = hashv(&[
@@ -19,17 +19,20 @@ Upon randomness request, the VRF program computes a [unique hashId](https://gith
     ]);
 ```
 
-Verified oracles sign the unique queue items with their private key, the resulted signature or `randomness proof` is verifiable onchain:
+Проверенные оракулы подписывают уникальные элементы очереди своим приватным ключом, а полученная подпись или доказательство случайности может быть проверена в сети:
 
-<img height="300" src="/images/vrf-proof.png" />
+<img
+  height="300"
+  src="/images/vrf-proof.png"
+/>
 
-The `randomness proof` is cryptographically bound to the input `caller_seed` and to MagicBlock's VRF signer identity. Your callback enforces this with:
+Доказательство случайности криптографически связано с входным `caller_seed` и идентичностью подписанта VRF от MagicBlock. Ваш обратный вызов обеспечивает это с помощью:
 
 ```rust
 #[account(address = ephemeral_vrf_sdk::consts::VRF_PROGRAM_IDENTITY)]
 pub vrf_program_identity: Signer<'info>,
 ```
 
-Only the official MagicBlock oracle can trigger the callback, preventing spoofed or manipulated results. Invalid proofs automatically fail, and other programs cannot front‑run the request.
+Обратный вызов может инициировать только официальный оракул MagicBlock, что предотвращает подделку или манипуляцию результатами. Недействительные доказательства автоматически отклоняются, а другие программы не могут опережать запрос.
 
-EphemeralVrf checks for conditions like `InvalidProof` and `Unauthorized` so incorrect signatures or unauthorized callers are rejected before your game logic runs.
+EphemeralVrf проверяет условия, такие как `InvalidProof` и `Unauthorized`, поэтому неправильные подписи или неавторизованные вызовы отклоняются до выполнения логики вашей игры.

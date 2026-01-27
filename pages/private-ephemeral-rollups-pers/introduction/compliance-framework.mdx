@@ -1,51 +1,44 @@
 ---
-title: "Compliance Framework"
-description: "MagicBlock enables confidential execution without compromising performance, compliance, or control."
+title: "Рамки Соответствия"
+description: "MagicBlock обеспечивает конфиденциальное выполнение без ущерба для производительности, соблюдения требований и контроля."
 ---
 
 import PerCards from "/snippets/per-cards.mdx";
 
-### Overview
+### **Обзор**
 
-MagicBlock Private Ephemeral Rollups (PERs) enable confidential execution while enforcing account-level state access and regulatory-compliant controls. We believe in a form of privacy that is respectful of users' rights and lawful. Private ERs are not open anonymity rails, but rather private environments with enforced boundaries that can be customized for specific use cases.
+**MagicBlock Приватный Эфемер Роллап** обеспечивают конфиденциальное выполнение с соблюдением доступа к состоянию на уровне аккаунта и требований регулирования. Мы придерживаемся концепции конфиденциальности, которая уважает права пользователей и соответствует закону. Приватный ЭР не являются открытыми анонимными сетями, а представляют собой закрытые среды с жёсткими границами, настраиваемыми под конкретные сценарии использования.
 
-### Built for Institutional Requirements: Performance, Compliance, and Control
+**Создано для институциональных требований: производительность, соблюдение требований и контроль**
 
-Businesses and institutions do not choose between performance, compliance, and control; they require all three. Systems that sacrifice performance for compliance are unusable at scale, while systems that optimize solely for speed or privacy without enforceable controls are incompatible with institutional mandates or the day-to-day operations of lawful businesses.
+Бизнес и учреждения не выбирают между производительностью, соблюдением требований и контролем — им нужны все три. Системы, которые жертвуют производительностью ради соответствия требованиям, непригодны для масштабирования, а системы, оптимизированные только для скорости или конфиденциальности без возможности принудительного контроля, не совместимы с институциональными требованиями и повседневной деятельностью законопослушных организаций.
 
-MagicBlock's Trusted Execution Environment (TEE) architecture is explicitly designed to satisfy these requirements simultaneously.
+**Архитектура TEE MagicBlock** специально разработана для одновременного удовлетворения этих требований.
 
-- **Performance**: Private ERs deliver low-latency, high-throughput execution suitable for real-time applications, market-sensitive workflows, and on-chain systems that cannot tolerate delayed or probabilistic settlement.
+- **Производительность:** Приватный Эфемер Роллап обеспечивают выполнение с низкой задержкой и высокой пропускной способностью, подходящее для приложений реального времени, чувствительных к рынку процессов и on-chain систем, которые не могут допускать задержек или вероятностного расчёта.
+- **Соблюдение требований (Compliance):** Применение в рамках юрисдикции, проверка на соответствие AML и санкциям в реальном времени, а также прозрачное лицензирование гарантируют, что конфиденциальное выполнение работает в пределах чётко определённых юридических и нормативных рамок.
+- **Контроль:** Доступ к конфиденциальному выполнению условен, настраиваем и обеспечивается на уровне on-chain программы. Учреждения сохраняют контроль над тем, кто может подключаться, и при каких условиях активы могут входить или выходить.
 
-- **Compliance**: Jurisdictional enforcement, real-time AML and sanctions screening, and clear, upfront licensing ensure private execution operates within clearly defined legal and regulatory boundaries.
+Такой подход позволяет учреждениям использовать преимущества конфиденциального выполнения, сохраняя гарантии, необходимые для ответственной работы в масштабе.
 
-- **Control**: Access to private execution is conditional, configurable, and enforceable at the on-chain program level. Institutions retain control over who can connect and under what constraints assets may enter or exit.
-
-This approach allows institutions to unlock the benefits of confidential execution while preserving the guarantees they require to operate responsibly at scale.
-
-### Compliance Safeguards
+### Меры по соблюдению требований
 
 <img
   src="/images/per-compliance-flow.png"
   alt="MagicBlock Private Ephemeral Rollup Compliance Flow"
-  style={{
-    width: "100%",
-    height: "auto",
-    objectFit: "contain",
-    borderRadius: "8px",
-  }}
+  style={{ width:"100%",height:"auto",objectFit:"contain",borderRadius:"8px" }}
 />
 
-- **Jurisdiction & Network Access Controls**  
-  Private ER access is enforced at the infrastructure layer through node-level IP geofencing. Connections originating from OFAC-sanctioned or otherwise restricted jurisdictions are blocked at ingress, before any transaction is accepted or executed. These controls ensure jurisdictional restrictions are enforced deterministically and upstream of execution.
+- **Юрисдикция и контроль доступа к сети**\
+  Доступ к Приватный ЭР обеспечивается на уровне инфраструктуры через геофильтрацию IP на уровне узлов. Подключения из стран, находящихся под санкциями OFAC или других ограниченных юрисдикций, блокируются на входе до того, как любая транзакция будет принята или выполнена. Эти меры гарантируют детерминированное соблюдение юрисдикционных ограничений ещё до выполнения.
 
-- **Real-Time AML & Sanctions Screening**  
-  All relevant interaction points with Private ERs are subject to continuous, real-time AML and sanctions screening via Range. This includes sanctions list verification, exposure and counterparty risk assessment, and behavioral risk signals. Transactions that fail screening are rejected or halted prior to execution or settlement, preventing tainted flows from entering or exiting the private environment.
+  **Проверка AML и санкций в реальном времени**\
+  Все точки взаимодействия с Приватный ЭР постоянно проверяются в реальном времени на соответствие требованиям AML и санкциям через Range. Это включает проверку санкционных списков, оценку рисков контрагентов, а также анализ поведенческих рисков. Транзакции, не прошедшие проверку, отклоняются или приостанавливаются до выполнения или расчёта, предотвращая попадание неблагонадёжных потоков в приватную среду или из неё.
 
-- **EULA & Licensed Deployments**  
-  Private ER instances are operated under explicit licensing and policy constraints defined by MagicBlock Labs and, where applicable, its partners. Different licenses can be applied to different instances to ensure the open-source software we provide explicitly forbids illicit use cases or misuse of the technology for unwarranted transactions.
+  **Лицензионные соглашения и лицензированные развертывания**\
+  Экземпляры Приватный ЭР работают под явными лицензионными и политическими ограничениями, определёнными MagicBlock Labs и, при необходимости, её партнёрами. Разные лицензии могут применяться к разным экземплярам, чтобы гарантировать, что предоставляемое открытое ПО явно запрещает незаконное использование или применение технологии для недопустимых транзакций.
 
-MagicBlock Private ERs deliver confidential execution within clearly enforced legal and regulatory boundaries.
+  **MagicBlock Приватный ЭР обеспечивают конфиденциальное выполнение в рамках чётко соблюдаемых юридических и нормативных границ.**
 
 ---
 

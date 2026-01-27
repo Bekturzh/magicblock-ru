@@ -3,12 +3,6 @@ title: "Управление доступом"
 description: "Learn how to manage fine-grained access control and member permissions in Private Ephemeral Rollups."
 ---
 
-import CreatePermissionRust from "/snippets/acl-code/permission/rust/create.mdx";
-import UpdatePermissionRust from "/snippets/acl-code/permission/rust/update.mdx";
-import DelegatePermissionRust from "/snippets/acl-code/permission/rust/delegate.mdx";
-import CommitAndUndelegatePermissionRust from "/snippets/acl-code/permission/rust/commit_and_undelegate.mdx";
-import ClosePermissionRust from "/snippets/acl-code/permission/rust/close.mdx";
-
 import CreatePermissionWeb3js from "/snippets/acl-code/permission/web3js/create.mdx";
 import UpdatePermissionWeb3js from "/snippets/acl-code/permission/web3js/update.mdx";
 import DelegatePermissionWeb3js from "/snippets/acl-code/permission/web3js/delegate.mdx";
@@ -46,30 +40,28 @@ import Validators from "/snippets/validators.mdx";
 
 ---
 
-## Overview
+## **Обзор**
 
-Private Ephemeral Rollups are [Ephemeral Rollups](/pages/ephemeral-rollups-ers/introduction/why) that enable fine-grained permission over permissioned accounts in a [Trusted Execution Environment](/pages/private-ephemeral-rollups-pers/introduction/onchain-privacy) with [compliance](/pages/private-ephemeral-rollups-pers/introduction/compliance-framework) at its heart. Each permission account maintains a list of members with specific flags that determine what actions they can perform.
+Приватные Эфемер Роллапы — это Эфемер Роллапы  которые обеспечивают детализированный контроль доступа к аккаунтам с ограниченными правами в среде Trusted Execution Environment (TEE) с соблюдением требований комплаенса. Каждый аккаунт с разрешениями хранит список участников с конкретными флагами, определяющими, какие действия они могут выполнять.
 
-### Key Concepts
+**Ключевые концепции**
 
-- **Permission Account**: A PDA that stores access control rules for a specific account
-- **Members**: Addresses granted specific permissions via flags
-- **Flags**: Bitmasks that define what a member can do (authority, view logs, view balances, etc.)
-- **Public Permissions**: When members are set to `None`, the permissioned account becomes temporarily visible
+- **Permission Account:** PDA, который хранит правила контроля доступа для конкретного аккаунта
+- **Members:** Адреса, которым предоставлены определённые права через флаги
+- **Flags:** Битовые маски, определяющие, что может делать участник (управление, просмотр логов, балансов и т.д.)
+- **Public Permissions:** Если для участников установлено значение None, аккаунт с ограниченным доступом становится временно видимым
 
----
+**Флаги участников**
 
-## Member Flags
+Флаги участников определяют детализированные права каждого участника. Флаги можно комбинировать с помощью побитового OR, чтобы предоставить несколько прав одновременно.
 
-Member flags define fine-grained permissions for each member. Flags can be combined using bitwise OR to grant multiple permissions.
+**Описание флагов:**
 
-**Flag Descriptions:**
-
-- **AUTHORITY**: Allows a member to update and delegate permission settings, add/remove other members, and update member flags.
-- **TX_LOGS**: Allows a member to view transaction execution logs.
-- **TX_BALANCES**: Allows a member to view account balance changes.
-- **TX_MESSAGE**: Allows a member to view transaction message data.
-- **ACCOUNT_SIGNATURES**: Allows a member to view account signatures
+- **AUTHORITY:** Позволяет участнику обновлять и делегировать настройки разрешений, добавлять/удалять других участников и изменять их флаги
+- **TX_LOGS:** Позволяет участнику просматривать логи выполнения транзакций
+- **TX_BALANCES:** Позволяет участнику видеть изменения баланса аккаунта
+- **TX_MESSAGE:** Позволяет участнику просматривать данные сообщений транзакций
+- **ACCOUNT_SIGNATURES:** Позволяет участнику просматривать подписи аккаунтов
 
 <Tabs>
   <Tab title="Rust SDK">
@@ -85,48 +77,45 @@ Member flags define fine-grained permissions for each member. Flags can be combi
     <MemberFlagsKit />
   </Tab>
 </Tabs>
+
 ---
 
-## Permission Lifecycle
+## Жизненный цикл разрешений
 
-The typical lifecycle of a permissioned account requires interaction with MagicBlock's Permission Program `ACLseoPoyC3cBqoUtkbjZ4aDrkurZW86v19pXz2XQnp1` and Delegation Program `DELeGGvXpWV2fqJUhqcF5ZSYMS4JTLjteaAMARRSaeSh`:
+Типичный жизненный цикл аккаунта с разрешениями требует взаимодействия с Permission Program от MagicBlock `ACLseoPoyC3cBqoUtkbjZ4aDrkurZW86v19pXz2XQnp1` и Delegation Program `DELeGGvXpWV2fqJUhqcF5ZSYMS4JTLjteaAMARRSaeSh`:
 
 <Steps>
   <Step title={<a href="#1-create">Create Permission</a>}>
-    Initialize a new permission account with initial members and their flags.
+    Инициализируйте новый аккаунт с разрешениями с начальными участниками и их флагами.
   </Step>
   <Step title={<a href="#2-delegate">Delegate Permission</a>}>
-    Delegate the permission to Private Ephemeral Rollup to enable enforcement
-    and real-time access control.
+    Делегируйте разрешение в Приватном Эфемер Роллапе для обеспечения его применения и управления доступом в реальном времени.
+
     <Validators />
   </Step>
   <Step title={<a href="#3-update">Update Permission</a>}>
-    Add, remove, or modify member permissions as needed. Updates can be made in
-    real-time on Private Ephemeral Rollup.
+    Добавляйте, удаляйте или изменяйте разрешения участников по необходимости. Обновления можно выполнять в реальном времени на Приватном Эфемер Роллапе
   </Step>
   <Step title={<a href="#4-request">Make Request</a>}>
-    Before making requests, verify TEE RPC integrity and obtain an authorization
-    token. Only members with appropriate flags can access or modify the account
-    state.
+    Перед выполнением запросов проверьте целостность TEE RPC и получите токен авторизации. Доступ к состоянию аккаунта или его изменение имеют только участники с соответствующими флагами.
   </Step>
   <Step title={<a href="#5-commit--undelegate">Commit and Undelegate</a>}>
-    Sync the final state back to Solana and return the account to Base Layer
-    control.
+    Синхронизируйте окончательное состояние обратно на Solana и передайте аккаунт под контроль базового слоя.
   </Step>
   <Step title={<a href="#6-close">Close Permission</a>}>
-    Close the permission account and reclaim its lamports when no longer needed.
+    Закройте аккаунт с разрешениями и верните его лампорты, когда он больше не нужен.
   </Step>
 </Steps>
 
 ---
 
-## Permission Operations
+## Операции с разрешениями
 
 <Tabs>
-  <Tab title="1. Create">
-    Once you've created your program, you can add permission and delegation hooks to control access to your accounts. For example, see [Quickstart](/pages/private-ephemeral-rollups-pers/how-to-guide/quickstart).
-    
-    Create a new permission account with initial members and their flags via MagicBlock's Permission Program `ACLseoPoyC3cBqoUtkbjZ4aDrkurZW86v19pXz2XQnp1`.
+  <Tab title="1. Создать">
+    **После того как вы создали программу, вы можете добавить хуки разрешений и делегирования для управления доступом к вашим аккаунтам. Например, см. Быстрый старт .**
+
+    Создайте новый аккаунт с разрешениями с начальными участниками и их флагами через Permission Program от MagicBlock `ACLseoPoyC3cBqoUtkbjZ4aDrkurZW86v19pXz2XQnp1`.
 
     <Tabs>
       <Tab title="Rust SDK">
@@ -142,20 +131,16 @@ The typical lifecycle of a permissioned account requires interaction with MagicB
         <CreatePermissionWeb3js />
       </Tab>
     </Tabs>
+    **Сценарии использования:**
 
-    **Use Cases:**
+    - Инициализация контроля доступа для нового делегированного аккаунта
+    - Настройка участников с полномочиями и их разрешений
+    - Определение, кто может просматривать детали транзакций
 
-    - Initialize access control for a new delegated account
-    - Set up authority members and their permissions
-    - Define who can view transaction details
-
-
-    [⬆️ Back to Top](#permission-lifecycle)
-
+    [⬆️ Вернуться к началу](#permission-lifecycle)
   </Tab>
-
-  <Tab title="2. Delegate">
-    Delegate a permissioned account to enable low-latency Private Ephemeral Rollup execution via MagicBlock's Delegation Program `DELeGGvXpWV2fqJUhqcF5ZSYMS4JTLjteaAMARRSaeSh`.
+  <Tab title="2. Делегейт">
+    **Делегируйте аккаунт с разрешениями для обеспечения выполнения с низкой задержкой на Private Ephemeral Rollup через Delegation Program от MagicBlock **`DELeGGvXpWV2fqJUhqcF5ZSYMS4JTLjteaAMARRSaeSh`**.**
 
     <Validators />
 
@@ -173,7 +158,6 @@ The typical lifecycle of a permissioned account requires interaction with MagicB
         <DelegatePermissionWeb3js />
       </Tab>
     </Tabs>
-
     **Use Cases:**
 
     - Enable ER execution for a permissioned account
@@ -188,11 +172,9 @@ The typical lifecycle of a permissioned account requires interaction with MagicB
     - **Once delegated to Private Ephemeral Rollup, the permission is enforced** - only members with appropriate flags can access or modify the account state
 
     [⬆️ Back to Top](#permission-lifecycle)
-
   </Tab>
-
-  <Tab title="3. Update">
-    Modify existing members or their flags in a permission account via MagicBlock's Permission Program `ACLseoPoyC3cBqoUtkbjZ4aDrkurZW86v19pXz2XQnp1`.
+  <Tab title="3. Обновить">
+    **Изменяйте существующих участников или их флаги в аккаунте с разрешениями через Permission Program от MagicBlock **`ACLseoPoyC3cBqoUtkbjZ4aDrkurZW86v19pXz2XQnp1`**.**
 
     <Tabs>
       <Tab title="Rust SDK">
@@ -208,7 +190,6 @@ The typical lifecycle of a permissioned account requires interaction with MagicB
         <UpdatePermissionWeb3js />
       </Tab>
     </Tabs>
-
     **Use Cases:**
 
     - Add new members to a permission group
@@ -217,11 +198,9 @@ The typical lifecycle of a permissioned account requires interaction with MagicB
     - Set members to `None` to make account temporarily visible
 
     [⬆️ Back to Top](#permission-lifecycle)
-
   </Tab>
-
-  <Tab title="4. Request">
-    When making requests to Private Ephemeral Rollup, you must first establish authorization:
+  <Tab title="4. Запрос">
+    При обращении к Private Ephemeral Rollup необходимо сначала получить авторизацию:
 
     <PerEndpoint />
 
@@ -239,7 +218,6 @@ The typical lifecycle of a permissioned account requires interaction with MagicB
         <AuthorizationWeb3js />
       </Tab>
     </Tabs>
-
     **Account Visibility:**
 
     - **By default**: All accounts are transparent and accessible to any authorized user
@@ -254,11 +232,9 @@ The typical lifecycle of a permissioned account requires interaction with MagicB
     - Updates take effect immediately on the Private Ephemeral Rollup
 
     [⬆️ Back to Top](#permission-lifecycle)
-
   </Tab>
-
-  <Tab title="5. Commit & Undelegate">
-    The latest permission state on Private Ephemeral Rollup enforces access control. For closing permission account, update permission members before undelegating permission to Solana.
+  <Tab title="5. Фиксация и отмена делегирования">
+    Последнее состояние разрешений на Private Ephemeral Rollup обеспечивает контроль доступа. Для закрытия аккаунта с разрешениями обновите участников разрешений перед отменой делегирования на Solana.
 
     <Tabs>
       <Tab title="Rust SDK">
@@ -274,13 +250,10 @@ The typical lifecycle of a permissioned account requires interaction with MagicB
         <CommitAndUndelegatePermissionWeb3js />
       </Tab>
     </Tabs>
-
     [⬆️ Back to Top](#permission-lifecycle)
-
   </Tab>
-
-  <Tab title="6. Close">
-    Close a permissioned account and reclaim its lamports on Solana.
+  <Tab title="6. Закрыть ">
+    Закройте аккаунт с разрешениями и верните его лампорты на Solana.
 
     <Tabs>
       <Tab title="Rust SDK">
@@ -296,7 +269,6 @@ The typical lifecycle of a permissioned account requires interaction with MagicB
         <ClosePermissionWeb3js />
       </Tab>
     </Tabs>
-
     **Use Cases:**
 
     - Clean up unused permission accounts
@@ -309,26 +281,23 @@ The typical lifecycle of a permissioned account requires interaction with MagicB
     - Lamports are returned to the payer
 
     [⬆️ Back to Top](#permission-lifecycle)
-
   </Tab>
 </Tabs>
 
 ---
 
-## Best Practices
+## **Рекомендации по использованию**
 
-1. **Authority Management**: Always assign AUTHORITY_FLAG to at least one trusted member
-2. **Least Privilege**: Grant only necessary flags to each member
-3. **Real-time Updates**: Permissions can be updated in real-time on Private Ephemeral Rollup without undelegating, allowing dynamic access control adjustments
-4. **Cleanup**: Undelegate and close unused permission accounts to free SOL
+- **Управление полномочиями (Authority Management):** Всегда назначайте **AUTHORITY_FLAG** хотя бы одному доверенному участнику
+- **Минимальные привилегии (Least Privilege):** Предоставляйте каждому участнику только необходимые флаги
+- **Обновления в реальном времени (Real-time Updates):** Разрешения можно обновлять в реальном времени на Private Ephemeral Rollup без отмены делегирования, что позволяет динамически управлять доступом
+- **Очистка (Cleanup):** Отменяйте делегирование и закрывайте неиспользуемые аккаунты с разрешениями, чтобы освободить SOL
 
----
+**Соображения по безопасности**
 
-## Security Considerations
-
-- **Signer Validation**: Only members with AUTHORITY_FLAG or program with permissioned account can authorize changes
-- **Public Accounts**: Setting members to `None` makes the account publicly visible
-- **Access Auditing**: Use member flags to audit and control access
+- **Проверка подписанта (Signer Validation):** Только участники с **AUTHORITY_FLAG** или программа с аккаунтом с разрешениями могут авторизовать изменения
+- **Публичные аккаунты (Public Accounts):** Установка участников в None делает аккаунт публично видимым
+- **Аудит доступа (Access Auditing):** Используйте флаги участников для аудита и контроля доступа
 
 ---
 

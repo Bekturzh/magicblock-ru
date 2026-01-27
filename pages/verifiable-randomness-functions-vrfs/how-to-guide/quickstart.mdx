@@ -1,6 +1,6 @@
 ---
 title: "Быстрый старт "
-description: "Learn how to request and consume verifiable randomness onchain using the MagicBlock VRF SDK on Solana."
+description: "Узнайте, как запрашивать и использовать проверяемую случайность (verifiable randomness) в сети с помощью MagicBlock VRF SDK на Solana."
 ---
 
 import Endpoints from "/snippets/endpoints.mdx";
@@ -23,72 +23,59 @@ import QuickAccessVRF from "/snippets/quick-access-vrf.mdx";
 
 ---
 
-## Step-By-Step Guide
+## **Пошаговое руководство**
 
-Any Solana program can request and consume verifiable randomness onchain within seconds using the MagicBlock VRF SDK. By the end of this guide, you'll have a working example that rolls a dice using verifiable randomness.
+Любая программа на Solana может запрашивать и использовать проверяемую случайность (verifiable randomness) в сети за считанные секунды с помощью MagicBlock VRF SDK. К концу этого руководства у вас будет рабочий пример, который бросает кубик с использованием проверяемой случайности.
 
 <Steps>
   <Step title={<a href="#1-write-program">Write your program</a>}>
-    Write your Solana program as you normally.
+    Пишите вашу программу на Solana как обычно.
   </Step>
-  <Step
-    title={
-      <a href="#2-request-%26-consume-randomnness">
-        Add request and consume randomness instructions.
-      </a>
-    }
-  >
-    Add CPI hooks that request and consume randomness via callback from a
-    verified oracle.
+  <Step title='
+    <a href="#2-request-%26-consume-randomnness">
+      Add request and consume randomness instructions.
+    </a>
+  '>
+    Добавьте CPI-хуки, которые запрашивают и используют случайность через обратный вызов от проверенного оракула.
   </Step>
   <Step title={<a href="#3-deploy">Deploy your program on Solana</a>}>
-    Deploy your Solana program using Anchor CLI.
+    Разверните вашу программу на Solana с помощью Anchor CLI.
   </Step>
-  <Step
-    title={<a href="#4-test">Execute transactions for onchain randomness.</a>}
-  >
-    Send transactions to generate and consume randomness onchain.
+  <Step title={<a href="#4-test">Execute transactions for onchain randomness.</a>}>
+    Отправляйте транзакции для генерации и использования случайности в сети.
   </Step>
 </Steps>
 
 ---
 
-## Roll Dice Example
+## Пример «Бросок кубика»
 
 <img
   src="/images/gifs/vrf-roll-dice-420w.gif"
   alt="Roll Dice GIF"
-  style={{
-    width: "100%",
-    maxWidth: "420px",
-    height: "auto",
-    objectFit: "contain",
-    borderRadius: "8px",
-  }}
+  style={{ width:"100%",maxWidth:"420px",height:"auto",objectFit:"contain",borderRadius:"8px" }}
 />
 
 <Software />
 
-### Code Snippets
+### Фрагменты Кода
 
 <Tabs>
-  <Tab title="1. Write program">
-    A simple roll dice program where player initialize state account to store, request and consume randomness:
-    
+  <Tab title="1. Напиши программу">
+    Простая программа «Бросок кубика», где игрок инициализирует аккаунт состояния для хранения, запроса и использования случайности:
+
     <InitializeCode />
 
-    [⬆️ Back to Top](#code-snippets)
-
+    [⬆️ Вернуться к началу](#code-snippets)
   </Tab>
-  <Tab title="2. Request & Consume Randomnness">
-
-    1. Add `ephemeral_vrf_sdk` with Anchor features to your program
+  <Tab title="2. Запрос и использование случайности">
+    1. Добавь `ephemeral_vrf_sdk` с использованием возможностей Anchor в вашей программе
 
     ```bash
     cargo add ephemeral_vrf_sdk --features anchor
     ```
 
-    Import `vrf` , `create_request_randomness_ix`, `RequestRandomnessParams`, and `SerializableAccountMeta`:
+    Импортируй`vrf` , `create_request_randomness_ix`, `RequestRandomnessParams`, и`SerializableAccountMeta`:
 
     ```rust
     use ephemeral_vrf_sdk::anchor::vrf;
@@ -96,34 +83,37 @@ Any Solana program can request and consume verifiable randomness onchain within 
     use ephemeral_vrf_sdk::types::SerializableAccountMeta;
     ```
 
-    2. Add instructions `roll_dice` to request randomness and `callback_roll_dice` to consume randomness, along with its context:
+    2. **Добавьте инструкции **`roll_dice`**для запроса случайности и ** `callback_roll_dice`**для её использования, вместе с соответствующим контекстом:** 
 
     <RequestConsumeRandomnessCode />
 
-    > `Request Randomness` is the process of generating a random `hashId` with the relevant callback instruction for the verified oracles to be triggered.
+    > **Запрос случайности — это процесс генерации случайного hashId с соответствующей инструкцией обратного вызова, которая активирует проверенные оракулы.**
 
-    > `Consume Randomness` is the process of using the verifiable randomness by your program which is provided and triggered through verified oracle.
+    > Использование случайности — это процесс применения проверяемой случайности вашей программой, предоставляемой и активируемой через проверенный оракул.
 
-    [⬆️ Back to Top](#code-snippets)
-
+    [⬆️ Вернуться к началу](#code-snippets)
   </Tab>
-  <Tab title="3. Deploy">
-    Now you’re program is upgraded and ready! Build and deploy to the desired
-    cluster:
+  <Tab title="3. Развернуть">
+    **Теперь ваша программа обновлена и готова! Создавайте и разворачивайте её в нужном кластере:**
+
     ```bash
     anchor build && anchor deploy
     ```
-    [⬆️ Back to Top](#code-snippets)
 
+    [⬆️ Вернуться к началу](#code-snippets)
   </Tab>
-  <Tab title="4. Test">
-    Ready to execute transactions for onchain randomness! 
+  <Tab title="4. Тест">
+    Готово к выполнению транзакций для генерации случайности в сети!
+
     ```bash
     anchor test --skip-build --skip-deploy --skip-local-validator
     ```
-    Run the following test:
+
+    Запустите следующий тест:
+
     <TestCode />
-    [⬆️ Back to Top](#code-snippets)
+
+    [⬆️ Вернуться к начлау](#code-snippets)
   </Tab>
 </Tabs>
 
@@ -131,31 +121,31 @@ Any Solana program can request and consume verifiable randomness onchain within 
 
 ## Solana Explorer
 
-Get insights about your transactions and accounts on Solana:
+Получайте информацию о ваших транзакциях и аккаунтах на Solana:
 
 <ExplorerCards />
 
-## Solana RPC Providers
+## Поставщики RPC Solana
 
-Send transactions and requests through existing RPC providers:
+Отправляйте транзакции и запросы через существующих поставщиков RPC:
 
 <RpcCards />
 
-## Solana Validator Dashboard
+## Панель управления валидатора Solana
 
-Find real-time updates on Solana's validator infrastructure:
+Отслеживайте обновления инфраструктуры валидаторов Solana в реальном времени:
 
 <ValidatorCards />
 
-## Server Status Subscriptions
+## Подписки на статус серверов
 
-Subscribe to Solana's and MagicBlock's server status:
+Подписывайтесь на статус серверов Solana и MagicBlock:
 
 <ServerStatusCards />
 
 ---
 
-## MagicBlock Products
+## Продукты MagicBlock 
 
 import ProductCards from "/snippets/product-cards.mdx";
 

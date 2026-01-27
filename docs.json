@@ -174,7 +174,7 @@
             "pages": [
               "pages/verifiable-randomness-functions-vrfs/introduction/why-verifiable-randomness-onchain",
               {
-                "group": "How it Works",
+                "group": "Как это работает ",
                 "pages": [
                   "pages/verifiable-randomness-functions-vrfs/introduction/technical-details",
                   "pages/verifiable-randomness-functions-vrfs/introduction/security",

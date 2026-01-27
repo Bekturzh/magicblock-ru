@@ -1,61 +1,63 @@
 ---
-title: "Onchain Privacy"
-description: "The high-performance engine for real-time applications that require privacy and compliance on Solana"
+title: "Рамки соответствия"
+description: "Высокопроизводительный движок для приложений реального времени, которым требуются конфиденциальность и соблюдение требований на Solana"
 ---
 
 import PerCards from "/snippets/per-cards.mdx";
 
 ---
 
-### MagicBlock Private Ephemeral Rollup (PER)
+**MagicBlock Приватный Эфемер Роллап **
 
-MagicBlock is bringing high-performance, general-purpose Trusted Execution Environments (TEEs) to Solana. We call this the Private Ephemeral Rollup (PER).
+MagicBlock внедряет высокопроизводительные универсальные среды доверенного исполнения (Trusted Execution Environments, TEE) на Solana. Мы называем это **Приватный Эфемер Роллап**.
 
-By using the security guarantees of Intel Trust Domain Extension (TDX) architecture combined with MagicBlock’s Ephemeral Rollup (ER) technology, we’re making it possible to run sensitive logic inside of a hardware-secured environment, while inheriting the composability and speed of Solana.
+Используя гарантии безопасности архитектуры **Intel Trust Domain Extension (TDX)** в сочетании с технологией **Эфемерный Роллап **от MagicBlock, стало возможным запускать чувствительную логику внутри защищённой аппаратной среды, сохраняя при этом **композируемость** и **скорость Solana**.
 
-For the first time, builders can design applications that are simultaneously:
+Впервые разработчики могут создавать приложения, которые одновременно:
 
-- **Confidential**: state is protected from all unauthorized parties
-- **Scalable**: running inside an ER that can execute blocks at high throughput and low latency
-- **Composable**: still able to interoperate with other Solana programs
-- **Compliant**: easy-to-enforce compliance thanks to a fine-grained access control layer
+- **Конфиденциальны:** состояние защищено от всех несанкционированных сторон
+- **Масштабируемы:** работают внутри ER, который может выполнять блоки с высокой пропускной способностью и низкой задержкой
+- **Композируемы:** могут взаимодействовать с другими программами Solana
+- **Соответствуют требованиям:** легко реализуемый контроль доступа с высокой детализацией
 
-This enables use cases like confidential transfers, sealed-bid auctions, and secure identity flows on Solana.
+Это открывает возможности для таких сценариев, как конфиденциальные переводы, аукционы с закрытыми ставками и безопасные процессы идентификации на Solana.
 
-### Trusted Execution Environments on Intel TDX
+**Среды доверенного исполнения на Intel TDX**
 
-A trusted execution environment acts as a vault inside a CPU. Generally, when you run a program (e.g., a validator), the operating system can see and influence everything: the code, the state, and the memory. A TEE creates a hardware-secured space that prevents interference, even by the machine it’s running on.
+Trusted Execution Environment действует как сейф внутри процессора. Обычно при запуске программы (например, валидатора) операционная система может видеть и влиять на всё: код, состояние и память. TEE создаёт аппаратно-защищённое пространство, которое предотвращает вмешательство, даже со стороны машины, на которой оно выполняется.
 
-We use a TEE to protect the state of an Ephemeral Rollup. Normally, when you execute a smart contract onchain, every step of the process is visible: the program being called, the accounts, and the resulting state changes. Using the TEE, programs can selectively shield ER state.
+Мы используем TEE для защиты состояния Эффемер Роллап. Обычно при выполнении смарт-контракта в сети каждый шаг процесса виден: вызываемая программа, аккаунты и изменения состояния. С помощью TEE программы могут выборочно защищать состояние ЭР.
 
-- Every account is public by default, like in Solana
-- Programs can explicitly define access rules for their accounts
+- Каждый аккаунт по умолчанию публичен, как в Solana
+- Программы могут явно задавать правила доступа для своих аккаунтов
 
-This means transfers, program calls, and interactions can avoid being broadcast publicly when desired.
+Это означает, что переводы, вызовы программ и взаимодействия могут оставаться конфиденциальными и не транслироваться публично, если это необходимо.
 
-### Why TEE
+### **Почему TEE (**Среды доверенного исполнения)**?**
 
-There are multiple privacy-preserving approaches used in blockchains. Each has different tradeoffs.
+Существуют различные подходы к обеспечению конфиденциальности в блокчейнах. Каждый из них имеет свои преимущества и ограничения.
 
-| Solution                       | What is it?                                               | Pros                                                               | Cons                                                                                    |
-| ------------------------------ | --------------------------------------------------------- | ------------------------------------------------------------------ | --------------------------------------------------------------------------------------- |
-| Trusted Execution Environments | Hardware-secured execution within a CPU                   | Near-native performance, run normal code                           | Trust assumption in vendor hardware                                                     |
-| Fully Homomorphic Encryption   | Compute directly on encrypted data                        | Data never decrypted                                               | Extremely slow, specialized tooling, difficult key management, bugs and vulnerabilities |
-| Zero Knowledge Proofs          | Prove something without revealing inputs                  | Efficient verification; strong for identity/compliance/correctness | Proving is heavy, bugs and vulnerabilities                                              |
-| Multi-party Computation        | Split a secret across multiple parties to compute jointly | Strong cryptographic guarantees                                    | Coordination overhead, high latency, specialized tooling, bugs and vulnerabilities      |
+| Решение                               | Что это?                                                                  | Преимущества                                                                                              | Недостатки                                                                                                              |
+| ------------------------------------- | ------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| Среды доверенного исполнения (ТЕЕ)    | Аппаратно-защищённое выполнение внутри процессора                         | Почти нативная производительность, выполнение обычного кода                                               | Доверие к аппаратному обеспечению производителя                                                                         |
+| Полностью гомоморфное шифрование      | Вычисления напрямую на зашифрованных данных                               | Данные никогда не расшифровываются                                                                        | Чрезвычайно медленно, требует специализированных инструментов, сложное управление ключами, возможны ошибки и уязвимости |
+| Доказательства с нулевым разглашением | Доказывать что-либо, не раскрывая входные данные                          | Эффективная проверка; хорошо подходит для удостоверения личности, соответствия требованиям и корректности | Процесс доказательства тяжёлый, возможны ошибки и уязвимости                                                            |
+| Многосторонние вычисления             | Разделить секрет между несколькими участниками для совместного вычисления | Надёжные криптографические гарантии                                                                       | Накладные расходы на координацию, высокая задержка, специализированные инструменты, возможны ошибки и уязвимости        |
 
-- **ZK**: efficient verification, not optimized for general low-latency computation
-- **MPC**: shared trust, higher latency and coordination
-- **FHE**: powerful in theory, not ready for general usage today
-- **TEE**: practical confidentiality with real-time performance and familiar developer UX on Solana
+**ZK (Zero-Knowledge):** эффективная проверка, не оптимизировано для общих вычислений с низкой задержкой
 
-### Application Unlocks
+**MPC (Multi-Party Computation):** распределенное доверие, более высокая задержка и необходимость координации
 
-- **Confidential Transfers**: move assets privately without exposing balances or counterparties
-- **Sealed-Bid Auctions**: keep bids hidden until settlement for fair price discovery
-- **Private Games**: support games where revealing state undermines gameplay
-- **Enterprise and Compliance Flows**: run sensitive operations with blockchain guarantees while keeping data private
-- **Identity-Based Access**: verify group membership without revealing unnecessary account history
+**FHE (Fully Homomorphic Encryption):** теоретически мощное, но сегодня не готово для общего использования
+
+**TEE (Trusted Execution Environment):** практическая конфиденциальность с производительностью в реальном времени и привычным для разработчиков UX на Solana
+
+1. **Возможности приложений:**
+   - **Конфиденциальные переводы:** перемещайте активы приватно, не раскрывая балансы и контрагентов
+   - **Аукционы с закрытыми ставками:** скрывайте ставки до расчёта для справедливого определения цены
+   - **Приватные игры:** поддержка игр, где раскрытие состояния разрушает игровой процесс
+   - **Корпоративные и комплаенс-процессы:** выполнение чувствительных операций с гарантиями блокчейна при сохранении конфиденциальности данных
+   - **Доступ на основе идентичности:** проверка членства в группе без раскрытия лишней истории аккаунтов
 
 import PerEndpoint from "/snippets/per-endpoint.mdx";
 

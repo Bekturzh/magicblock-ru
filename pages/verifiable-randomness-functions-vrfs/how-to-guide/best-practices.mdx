@@ -1,25 +1,24 @@
 ---
 title: "Лучшие практики"
-description: "Guidelines for integrating verifiable randomness"
+description: "Руководство по интеграции проверяемой случайности"
 ---
 
-Use these tips to get the most reliable results when requesting randomness.
-Ensure your rollup delegates to a trusted oracle queue with the `DelegateOracleQueue` instruction so that requests are fulfilled promptly.
+**Используйте эти советы, чтобы получать наиболее надёжные результаты при запросе случайности. Убедитесь, что ваш rollup делегирует задачи в доверенную очередь оракулов с помощью инструкции **`DelegateOracleQueue`**, чтобы запросы выполнялись своевременно.**
 
-### Seed Selection
+**Выбор семени (Seed Selection)**
 
-- Combine user input with server timestamps or game state to create unpredictable seeds.
-- Avoid letting players specify the entire `caller_seed` to prevent grinding.
+- Комбинируйте ввод пользователя с серверными временными метками или состоянием игры для создания непредсказуемых семян.
+- Не позволяйте игрокам задавать полностью `caller_seed`, чтобы предотвратить манипуляции.
 
-### Callback Validation
+**Проверка обратного вызова (Callback Validation)**
 
-- Always check the `vrf_program_identity` to confirm the callback is from MagicBlock's official signer.
-- Reject callbacks that do not match the original request parameters.
+- Всегда проверяйте `vrf_program_identity`, чтобы убедиться, что обратный вызов исходит от официального подписанта MagicBlock.
+- Отклоняйте обратные вызовы, которые не соответствуют исходным параметрам запроса.
 
-### State Management
+**Управление состоянием (State Management)**
 
-- Store any pending request identifiers so that retries or unexpected callbacks can be handled safely.
-- Track the oracle queue your requests were delegated to so results can be matched back correctly.
-- Keep random outputs ephemeral—consume them immediately within your [rollup logic](/pages/get-started/introduction/ephemeral-rollup) and avoid reusing them.
+- Сохраняйте идентификаторы всех ожидающих запросов, чтобы безопасно обрабатывать повторные попытки или неожиданные обратные вызовы.
+- Отслеживайте очередь оракулов, в которую были делегированы ваши запросы, чтобы результаты можно было корректно сопоставить.
+- Держите случайные результаты эфемерными — используйте их сразу в логике rollup и избегайте повторного использования.
 
-Following these guidelines reduces the risk of manipulation and ensures consistent randomness across sessions.
+**Следование этим рекомендациям снижает риск манипуляций и обеспечивает согласованную случайность между сессиями.**

@@ -1,20 +1,16 @@
 ---
-title: "FAQ"
-description: "Common questions about verifiable randomness"
+title: "Часто задаваемые вопросы "
+description: "Часто задаваемые вопросы о проверяемой случайности"
 ---
 
-### Why not use block hashes for randomness?
+**Зачем не использовать хеши блоков для случайности?**\
+Хеши блоков могут быть предсказаны или скомпрометированы майнерами и валидаторами, что делает их непригодными для честной игры. VRF (Проверяемая Случайность) от MagicBlock доказывает, что случайность сгенерирована независимо от производства блоков.
 
-Block hashes can be predicted or manipulated by miners and validators, making them unsuitable for fair gameplay. MagicBlock's VRF proves the randomness was generated independently of block production.
+**Насколько быстро происходит обратный вызов случайности?**\
+VRF работает внутри окна исполнения эфемерного rollup, поэтому результаты обычно доступны в пределах одного раунда транзакции без необходимости внешнего опроса.
 
-### How fast is the randomness callback?
+**Могу ли я проверить доказательства случайности?**\
+Да. Каждый запрос содержит доказательство, которое любой пользователь может проверить on-chain с использованием той же криптографии, что и у подписанта VRF. Такая прозрачность позволяет игрокам убедиться в честности.
 
-The VRF operates within the [ephemeral rollup](/pages/ephemeral-rollups-ers/introduction/ephemeral-rollup) execution window, so results are typically available within a single transaction round, without external polling.
-
-### Can I audit the randomness proofs?
-
-Yes. Each request includes a proof that anyone can verify on-chain using the same cryptography as the VRF signer. This transparency ensures players can confirm fairness.
-
-### Who runs the oracles?
-
-EphemeralVrf uses a permissioned set of oracles managed through on-chain queues. You can delegate your rollup to a specific queue so trusted operators fulfill your requests.
+**Кто управляет оракулами?**\
+EphemeralVrf использует разрешённый набор оракулов, управляемый через on-chain очереди. Вы можете делегировать ваш rollup в конкретную очередь, чтобы доверенные операторы выполняли ваши запросы.
