@@ -1,17 +1,20 @@
 ---
 title: "Делегирование, Фиксация и Анделегирование"
-description: "Execute Transactions, Synchronize States, all in real-time."
+description: "Выполняйте транзакции, синхронизируйте состояния — всё в реальном времени."
 ---
 
 import Validators from "/snippets/validators.mdx";
 
-<img class="w-full h-auto max-w-5xl" src="/images/architecture_overview.png" />
+<img
+  class="w-full h-auto max-w-5xl"
+  src="/images/architecture_overview.png"
+/>
 
-[Magicblock's Ephemeral Rollup](/pages/overview/additional-information/whitepaper) **leverages the Solana Virtual Machine (SVM)’s account-based structure and parallel execution** to optimize state management. By structuring the state into **clusters**, users can **lock one or multiple accounts** and temporarily shift state execution to a **dedicated auxiliary layer**— "Ephemeral Rollup (ER)". A dynamic fraud-proof mechanism enables fast state finalization through a decentralized Security Committee, see [whitepaper](/public/Ephemeral_Rollups_Fraud_Proof.pdf).
+Эфемерный Роллап от MagicBlock использует аккаунтную структуру и параллельное выполнение Solana Virtual Machine (SVM) для оптимизации управления состоянием. Структурируя состояние в кластеры, пользователи могут блокировать один или несколько аккаунтов и временно переносить выполнение состояния на выделенный вспомогательный слой — «Эфемерный Роллап (ЭР)». Динамический механизм защиты от мошенничества обеспечивает быструю финализацию состояния через децентрализованный Комитет по безопасности, смотерть [Белый лист](/public/Ephemeral_Rollups_Fraud_Proof.pdf)
 
 ---
 
-## Account Lifecyle for executing transactions in real-time with ER:
+## Жизненный цикл аккаунта для выполнения транзакций в реальном времени с ЭР:
 
 <img
   class="w-full h-auto max-w-5xl"
@@ -19,36 +22,23 @@ import Validators from "/snippets/validators.mdx";
 />
 
 <Steps>
-  <Step title="Delegate Account">
-    State accounts must be delegated to an specific ER validator first by
-    changing the account owner to the [Delegation
-    Program](https://github.com/magicblock-labs/delegation-program)
-    `DELeGGvXpWV2fqJUhqcF5ZSYMS4JTLjteaAMARRSaeSh` and specifying parameters
-    like ER validator, account lifetime and synchronization frequency.
-    <Validators />
+  <Step title="Делегировать аккаунт">
+    Аккаунты состояния должны быть сначала делегированы конкретному валидатору ER путём изменения владельца аккаунта на [Delegation
+    Program](https://github.com/magicblock-labs/delegation-program) `DELeGGvXpWV2fqJUhqcF5ZSYMS4JTLjteaAMARRSaeSh` и указания таких параметров, как валидатор ER, срок жизни аккаунта и частота синхронизации.
 
+    <Validators />
   </Step>
-  <Step title="Execute Transaction in real-time">
-    Delegated state accounts are updated in real-time with transactions on the
-    ER directly or via [Magic
-    Router](/pages/ephemeral-rollups-ers/introduction/magic-router). The
-    **initial transaction on ER clones the delegated account** from base layer
-    to the ephemeral rollup.
+  <Step title="Выполнить транзакцию в реальном времени">
+    **Делегированные аккаунты состояния обновляются в реальном времени с помощью транзакций на ЭР напрямую или через **[Magic Router](/pages/ephemeral-rollups-ers/introduction/magic-router). **Начальная транзакция на ЭР клонирует делегированный аккаунт с базового слоя в эфемерный роллап.**
   </Step>
-  <Step title="Commit State">
-    The operator commits the ephemeral state to the base layer **periodically or
-    on-demand**, including new state and relevant pointers. The account state is
-    finalized using a fraud-proof mechanism as detailed in the paper.
+  <Step title="Фиксация состояния">
+    Оператор периодически или по запросу фиксирует эфемерное состояние на базовом слое, включая новое состояние и соответствующие указатели. Состояние аккаунта финализируется с использованием механизма защиты от мошенничества, подробно описанного в документе.
   </Step>
-  <Step title="Execute Transaction in real-time continuously">
-    Delegated account states can continuously be updated in real-time on the ER
-    directly or via [Magic
-    Router](/pages/ephemeral-rollups-ers/introduction/magic-router).
+  <Step title="Непрерывное выполнение транзакций в реальном времени">
+    Делегированные состояния аккаунтов могут непрерывно обновляться в реальном времени напрямую на ЭР или через [Magic Router](/pages/ephemeral-rollups-ers/introduction/magic-router).
   </Step>
-  <Step title="Undelegate Account">
-    Delegated account states are committed through ER validator to the base
-    layer and the account owner are reversed from the [Delegation
-    Program](https://github.com/magicblock-labs/delegation-program)
-    `DELeGGvXpWV2fqJUhqcF5ZSYMS4JTLjteaAMARRSaeSh` to the original owner.
+  <Step title="Отменить делегирование аккаунта">
+    Делегированные состояния аккаунтов фиксируются через валидатор ER на базовом слое, и владелец аккаунта возвращается с [Delegation
+    Program](https://github.com/magicblock-labs/delegation-program) `DELeGGvXpWV2fqJUhqcF5ZSYMS4JTLjteaAMARRSaeSh` **к первоначальному владельцу.**
   </Step>
 </Steps>

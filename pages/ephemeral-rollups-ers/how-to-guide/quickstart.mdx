@@ -66,7 +66,7 @@ Ready to execute transactions for delegation and real-time speed
 
 ---
 
-## Пример счетчика 
+## Пример счетчика
 
 <img
   src="/images/gifs/counter-420w.gif"
@@ -80,36 +80,36 @@ Ready to execute transactions for delegation and real-time speed
 
 <Tabs>
   <Tab title="1. Напиши программу">
-    The program implements two main instructions:
+    Программа реализует две основные инструкции:
 
-    1. `initialize`: Sets the counter to 0
-    2. `increment`: Increments the counter by 1
+    1. `initialize`: Устоновите счетчик на 0
+    2. `increment`: Увеличивает счётчик на 1
 
-    The program implements specific instructions for delegating and undelegating the counter:
+    Программа реализует специальные инструкции для делегирования и отмены делегирования счётчика:
 
-    1. `Delegate`: Delegates counter from Base Layer to ER (called on Base Layer)
-    2. `CommitAndUndelegate`: Schedules sync of counter from ER to Base Layer, and undelegates counter on ER (called on ER)
-    3. `Commit`: Schedules sync of counter from ER to Base Layer (called on ER)
+    1. `Delegate`: Делегирует счётчик с базового слоя (Base Layer) в ЭР (вызывается на базовом слое)
+    2. `CommitAndUndelegate`: Планирует синхронизацию счётчика из ЭР в базовый слой (Base Layer) и отменяет делегирование счётчика в ЭР (вызывается в ЭР)
+    3. `Commit`: Планирует синхронизацию счётчика из ER в базовый слой (Base Layer) (вызывается в ЭР)
     4. `Undelegate`:
-       - Schedules sync and undelegation of counter (called on ER)
-       - Undelegation triggered through callback instruction injected through #[ephemeral] (called on Base Layer through validator CPI)
+       - Планирует синхронизацию и отмену делегирования счётчика (вызывается в ER)
+       - Отмена делегирования, инициируемая через callback-инструкцию, внедрённую с помощью `#[ephemeral]` (вызывается на базовом слое (Base Layer) через CPI валидатора)
 
     <WriteProgramCode />
 
-    Nothing special here, just a simple Anchor program that increments a counter. The only difference is that we're adding the `ephemeral` macro for undelegation and `delegate` macro to inject some useful logic to interact with the delegation program.
+    Ничего особенного — это просто простой Anchor-программный контракт, который увеличивает счётчик. Единственное отличие в том, что мы добавляем макрос `ephemeral` для отмены делегирования и макрос `delegate`, чтобы внедрить полезную логику для взаимодействия с программой делегирования.
 
-    [⬆️ Back to Top](#code-snippets)
+    [⬆️ Вернуться к началу](#code-snippets)
   </Tab>
   <Tab title="2. Делегировать ">
     <Validators />
 
-    1. Add `ephemeral-rollups-sdk` with Anchor features to your program
+    1. Добавьте `ephemeral-rollups-sdk` с возможностями Anchor в вашу программу
 
     ```bash
     cargo add ephemeral-rollups-sdk --features anchor
     ```
 
-    Import `delegate`, `commit`, `ephemeral`, `DelegateConfig`, `commit_accounts` and `commit_and_undelegate_accounts`:
+    Ипортировать `delegate`, `commit`, `ephemeral`, `DelegateConfig`, `commit_accounts` аа так же`commit_and_undelegate_accounts`:
 
     ```rust
     use ephemeral_rollups_sdk::anchor::{
@@ -124,7 +124,7 @@ Ready to execute transactions for delegation and real-time speed
       };
     ```
 
-    2. Add `delegate` macro and instruction, `ephemeral` macro, and `undelegate` instruction to your program. Specify your preferred delegation config such as auto commits and specific ER validator:
+    2. Добавьте в вашу программу макрос `delegate` и инструкцию, макрос `ephemeral` и инструкцию `undelegate`. Укажите предпочитаемую конфигурацию делегирования, например, автоматические коммиты и конкретного валидатора ЭР
 
     <DelegateCode />
 
@@ -134,16 +134,16 @@ Ready to execute transactions for delegation and real-time speed
 
     <DelegationInfo />
 
-    [⬆️ Back to Top](#code-snippets)
+    [⬆️ Вернуться к началу](#code-snippets)
   </Tab>
   <Tab title="3. Развернуть">
-    Now you’re program is upgraded and ready! Build and deploy to the desired cluster:
+    Теперь ваша программа обновлена и готова! Скомпилируйте и разверните её в нужном кластере:
 
     ```bash
     anchor build && anchor deploy
     ```
 
-    [⬆️ Back to Top](#code-snippets)
+    [⬆️ Вернуться к началу](#code-snippets)
   </Tab>
   <Tab title="4. Протестировать">
     Готово к выполнению транзакций для делегирования с поддержкой обработки в реальном времени
@@ -154,34 +154,34 @@ Ready to execute transactions for delegation and real-time speed
     anchor test --skip-build --skip-deploy --skip-local-validator
     ```
 
-    Run the following test:
+    **Запустите следующий тест:**
 
     <TestCode />
 
-    To make it easier to integrate via the frontend, we created the [Magic Router](/pages/ephemeral-rollups-ers/introduction/magic-router). You send transactions directly to the magic router, and we can determine for you whether it should be routed to the [Ephemeral Rollup](/pages/ephemeral-rollups-ers/introduction/ephemeral-rollup) or base layer.
+    Чтобы упростить интеграцию через фронтенд, мы создали Magic Router. Вы отправляете транзакции напрямую в Magic Router, а мы определяем за вас, следует ли направлять их в Ephemeral Rollup или на базовый слой.
 
     <Endpoints />
 
-    [⬆️ Back to Top](#code-snippets)
+    [⬆️ Вернуться к началу ](#code-snippets)
   </Tab>
 </Tabs>
 
 ---
 
-### Advanced Code Snippets
+### Расширенные Фрагменты Кода
 
 <Tabs>
-  <Tab title="Resize PDA">
-    When resizing a delegated PDA:
+  <Tab title="Изменить размер PDA">
+    При изменении размера делегированного PDA:
 
-    - PDA must have enough lamports to remain rent-exempt for the new account size.
-    - If additional lamports are needed, the **payer account must be delegated** to provide the difference.
-    - PDA must be owned by the program, and the transaction must include any signer(s) required for transferring lamports.
-    - Use `system_instruction::allocate`
+    - У PDA должно быть достаточно лампортов, чтобы оставаться освобождённым от аренды для нового размера аккаунта.
+    - Если требуется добавить дополнительные лампорты, счётчик-плательщик должен быть делегирован для предоставления недостающей суммы.
+    - PDA должен принадлежать программе, а транзакция должна включать всех необходимых подписантов для перевода лампортов.
+    - Используй `system_instruction::allocate`
 
     <ResizeCode />
 
-    [⬆️ Back to Top](#advanced-code-snippets)
+    [⬆️ Вернутся к началу ](#advanced-code-snippets)
   </Tab>
   <Tab title="Magic Router">
     <MagicRouterSDK />
@@ -189,23 +189,23 @@ Ready to execute transactions for delegation and real-time speed
     [⬆️ Back to Top](#advanced-code-snippets)
   </Tab>
   <Tab title="Magic Action">
-    ### Quick Access
+    ### Быстрый Старт
 
     <CardGroup cols={2}>
-      <Card title="Magic Actions Example" icon="code" iconType="duotone" href="https://github.com/magicblock-labs/magicblock-engine-examples/tree/main/magic-actions">
-        Explore reference implementation on GitHub
+      <Card title="Пример Magic Actions" icon="code" iconType="duotone" href="https://github.com/magicblock-labs/magicblock-engine-examples/tree/main/magic-actions">
+        Изучите эталонную реализацию на GitHub
       </Card>
     </CardGroup>
-    Attach one or more instructions that run automatically on the Solana base layer immediately after an Ephemeral Rollup (ER) commit. [Learn more about Magic Action](/pages/ephemeral-rollups-ers/magic-actions/overview.mdx)
+    Прикрепите одну или несколько инструкций, которые выполняются автоматически на базовом слое Solana сразу после коммита Ephemeral Rollup (ER). Узнайте больше о [ Magic Action](/pages/ephemeral-rollups-ers/magic-actions/overview.mdx)
 
     <MagicActionExample />
 
-    [⬆️ Back to Top](#advanced-code-snippets)
+    [⬆️ Вернуться к началу](#advanced-code-snippets)
   </Tab>
-  <Tab title="On-Curve Delegation">
+  <Tab title="Делегирование на кривой ">
     <OncurveDelegation />
 
-    [⬆️ Back to Top](#advanced-code-snippets)
+    [⬆️ Вернуться к началу](#advanced-code-snippets)
   </Tab>
 </Tabs>
 
@@ -219,7 +219,7 @@ Ready to execute transactions for delegation and real-time speed
 
 ---
 
-## MagicBlock Products
+## Продукты MagicBlock
 
 import ProductCards from "/snippets/product-cards.mdx";
 
