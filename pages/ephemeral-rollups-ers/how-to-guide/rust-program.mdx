@@ -19,7 +19,21 @@ import QuickAccesERRust from "/snippets/quick-access-er-rust.mdx";
 
 ---
 
-<QuickAccesERRust />
+### **Быстрый доступ**
+
+Ознакомьтесь с базовым примером счётчика в других реализациях:
+
+<Columns cols={2}>
+  <Card title="GitHub" icon="github" href="https://github.com/magicblock-labs/magicblock-engine-examples/tree/main/rust-counter">
+    Нативная реализация на Rust
+  </Card>
+  <Card title="GitHub" icon="GitHub" href="https://github.com/magicblock-labs/magicblock-engine-examples/tree/main/pinocchio-counter">
+    Реализация на Pinocchio
+  </Card>
+  <Card title="Local Development" icon="computer" iconType="duotone" href="/pages/ephemeral-rollups-ers/how-to-guide/local-development">
+    Локальная разработка
+  </Card>
+</Columns>
 
 ---
 
@@ -57,7 +71,7 @@ Write program and add delegation instructions
 
 ---
 
-## Пример Счетчика 
+## Пример Счетчика
 
 <SoftwareRust />
 
@@ -68,7 +82,7 @@ Write program and add delegation instructions
     **Программа реализует две основные инструкции:**
 
     - **InitializeCounter:** Инициализирует счётчик и устанавливает его в 0 (вызывается на базовом слое, Base Layer)
-    - **IncreaseCounter:** Увеличивает инициализированный счётчик на X (вызывается на базовом слое или в ER) 
+    - **IncreaseCounter:** Увеличивает инициализированный счётчик на X (вызывается на базовом слое или в ER)
 
       Программа реализует специальные инструкции для делегирования и отмены делегирования счётчика:
     - **Delegate:** Делегирует счётчик с базового слоя (Base Layer) в ER (вызывается на базовом слое)
@@ -88,7 +102,7 @@ Write program and add delegation instructions
     [⬆️ Вернуться к началу](#code-snippets)
   </Tab>
   <Tab title="2. Делегировать">
-    ###  Делегирование PDA счётчика
+    ### Делегирование PDA счётчика
 
     Чтобы делегировать PDA счётчика и сделать его доступным для записи в сессии Ephemeral Rollup, нам нужно добавить инструкцию, которая внутри вызывает функцию `delegate_account`. Функция `delegate_account` выполнит CPI к программе делегирования, которая после проверки получит владение аккаунтом. После этого эпемерный валидатор сможет начать обработку транзакций на PDA счётчика и предлагать изменения состояния через программу делегирования.
 
@@ -146,7 +160,7 @@ Write program and add delegation instructions
     - **PDA должен иметь достаточно лампортов**, чтобы оставаться освобождённым от арендной платы для нового размера аккаунта.
     - **Если требуется добавить дополнительные лампорты**, счётчик-плательщик должен быть делегирован для предоставления недостающей суммы.
     - **PDA должен принадлежать программе**, а транзакция должна включать всех необходимых подписантов для перевода лампортов.
-    - **Используйте **`system_instruction::allocate`
+    - \*\*Используйте \*\*`system_instruction::allocate`
 
     <ResizeCode />
 
