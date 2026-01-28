@@ -1,19 +1,19 @@
 ---
 title: "Реализация"
-description: "Learn how to implement cranks in your Solana program using MagicBlock Ephemeral Rollups"
+description: "Узнайте, как внедрить cranks в вашу программу на Solana с использованием Ephemeral Rollups от MagicBlock"
 ---
 
-## Overview
+## **Обзор**
 
-This guide demonstrates how to implement cranks using **MagicBlock's Ephemeral Rollups (ER)** with the Anchor framework. The implementation follows this flow:
+В этом руководстве показано, как реализовать cranks с использованием **Эфемерных Роллапов от MagicBlock** в рамках фреймворка Anchor. Реализация выполняется по следующему алгоритму:
 
-1. Initialize counter on Solana base layer
-2. Delegate counter account to Ephemeral Rollup for faster execution
-3. Schedule a crank task that automatically increments the counter
-4. Execute the crank automatically at specified intervals
-5. Undelegate the account back to Solana base layer when done
+1. Инициализируйте счётчик на базовом уровне Solana
+2. Делегируйте аккаунт счётчика в Эфемер Роллап для более быстрого выполнения
+3. Запланируйте задачу активатора, которая будет автоматически увеличивать счётчик
+4. Автоматически выполняйте crank через заданные интервалы времени
+5. После завершения верните аккаунт обратно на базовый уровень Solana
 
-## Execution Flow
+## Порядок выполнения
 
 ```
 1. User calls initialize() on Solana base layer
@@ -38,10 +38,12 @@ This guide demonstrates how to implement cranks using **MagicBlock's Ephemeral R
 5. User calls undelegate() on Ephemeral Rollup
    └─> Commits changes and moves Counter back to Solana base layer
 ```
-## Core Components
 
-### Scheduled Function
-Let's take for example that you wanted to schedule the following simple increment instrcution for a counter. 
+## Основные компоненты
+
+### **«Запланированная функция»**
+
+Возьмём, к примеру, ситуацию, когда вы хотите запланировать следующую простую инструкцию для увеличения счётчика.
 
 ```rust
 pub fn increment(ctx: Context<Increment>) -> Result<()> {
@@ -55,10 +57,9 @@ pub fn increment(ctx: Context<Increment>) -> Result<()> {
 }
 ```
 
+### Запланировать функцию увеличения
 
-### Schedule Increment Function
-
-The core crank scheduling logic:
+Основная логика планирования активаторов:
 
 ```rust
 pub fn schedule_increment(ctx: Context<ScheduleIncrement>, args: ScheduleIncrementArgs) -> Result<()> {
@@ -104,13 +105,14 @@ pub fn schedule_increment(ctx: Context<ScheduleIncrement>, args: ScheduleIncreme
 }
 ```
 
-**Key Points:**
-- Creates an instruction to increment the counter
-- Serializes it into a `ScheduleTask` instruction for MagicBlock
-- Uses CPI (Cross-Program Invocation) to call the MagicBlock program
-- The MagicBlock program handles the scheduling and execution
+**Ключевые моменты:**
 
-### Schedule Arguments
+- Создаёт инструкцию для увеличения счётчика
+- Сериализует её в инструкцию **ScheduleTask** для MagicBlock
+- Использует **CPI (Cross-Program Invocation)** для вызова программы MagicBlock
+- Программа MagicBlock отвечает за планирование и выполнение
+
+### Аргументы планирования
 
 ```rust
 #[derive(AnchorSerialize, AnchorDeserialize)]
@@ -120,7 +122,8 @@ pub struct ScheduleIncrementArgs {
     pub iterations: u64,                   // Number of times to execute
 }
 ```
-### ScheduleIncrement Context
+
+### Сведения о запланированном увеличении
 
 ```rust
 #[derive(Accounts)]
@@ -138,5 +141,4 @@ pub struct ScheduleIncrement<'info> {
 }
 ```
 
-**Important**: Uses `AccountInfo` instead of `Account<Counter>` to avoid Anchor re-serializing stale data after CPI calls.
-
+**Важно:** используется **AccountInfo** вместо **Account\<Counter\>**, чтобы избежать повторной сериализации устаревших данных Anchor после вызовов CPI.

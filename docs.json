@@ -250,7 +250,7 @@
               "pages/tools/bolt/introduction",
               "pages/tools/bolt/mapping",
               {
-                "group": "Getting Started",
+                "group": "Начало работы",
                 "pages": [
                   "pages/tools/bolt/getting-started/installation",
                   "pages/tools/bolt/getting-started/hello-bolt",

@@ -1,29 +1,29 @@
 ---
-title: "World Program Overview"
+title: "Обзор программы World"
 description: " "
 ---
 
-The World Program is the entrypoint for creating world instances, entities, attaching components, and executing systems within a unified framework.
+Программа **World** является точкой входа для создания экземпляров мира, сущностей, присоединения компонентов и выполнения систем в единой структуре.
 
-## Client Development
+## Разработка клиента
 
-Ongoing development efforts are focused on delivering multiple client SDKs and integrations.
+Текущие усилия разработки сосредоточены на создании нескольких клиентских SDK и интеграций.
 
-The [World Program](https://explorer.solana.com/address/WorLD15A7CrDwLcLy4fRqtaTb9fbd8o8iqiEMUDse2n/anchor-program?cluster=devnet), a standard Anchor program, expose its Interface Definition Language (IDL) published on-chain for seamless interaction.
+Программа **World**, являющаяся стандартной программой Anchor, предоставляет свой язык описания интерфейса (IDL), опубликованный в блокчейне, для бесшовного взаимодействия.
 
-## TypeScript SDK Installation
+## Установка SDK для TypeScript
 
-To install the Bolt SDK, execute the following command:
+Для установки SDK **Bolt** выполните следующую команду:
 
 ```bash
 npm install @magicblock-labs/bolt-sdk
 ```
 
-Initiating a project with bolt init automatically generates a simple usage example of the bolt-sdk.
+Инициализация проекта с помощью **bolt init** автоматически создаёт простой пример использования **bolt-sdk**.
 
-## Creating a New World Instance
+## Создание нового экземпляра мира
 
-Create a new world instance as demonstrated below:
+Создайте новый экземпляр мира, как показано ниже:
 
 ```typescript
 const initializeNewWorld = await InitializeNewWorld({
@@ -34,9 +34,9 @@ const signature = await provider.sendAndConfirm(initializeNewWorld.transaction);
 const worldPda = initializeNewWorld.worldPda; // we can use this later
 ```
 
-## Adding a New Entity
+## Добавление новой сущности
 
-To add a new entity:
+Чтобы добавить новую сущность:
 
 ```typescript
 const addEntity = await AddEntity({
@@ -48,9 +48,9 @@ const signature = await provider.sendAndConfirm(addEntity.transaction);
 const entityPda = addEntity.entityPda; // we can use this later
 ```
 
-## Attaching Components to an Entity
+## Присоединение компонентов к сущности
 
-For attaching components:
+Для присоединения компонентов:
 
 ```typescript
 const initializeComponent = await InitializeComponent({
@@ -64,9 +64,9 @@ const signature = await provider.sendAndConfirm(
 const componentPda = initializeComponent.componentPda; // We can use this to fetch the state
 ```
 
-## Applying Systems
+## Применение систем
 
-To apply a system:
+Чтобы применить систему:
 
 ```typescript
 const applySystem = await ApplySystem({
