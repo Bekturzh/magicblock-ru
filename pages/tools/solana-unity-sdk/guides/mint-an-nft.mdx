@@ -1,9 +1,10 @@
 ---
-title: "Minting an NFT"
-description: "For minting an NFT we will interact with the [Token Metadata](https://docs.metaplex.com/programs/token-metadata/) program, see the metaplex [documentation](https://docs.metaplex.com/) for a comprehensive overview."
+title: "Минт NFT"
+description: "Для создания NFT мы будем взаимодействовать с программой [Token Metadata](https://docs.metaplex.com/programs/token-metadata/). Полный обзор см. в документации Metaplex: [Metaplex Documentation](https://docs.metaplex.com/).
+"
 ---
 
-Firstly, we need to create a new mint account for the NFT we want to mint and an associated token account for owning it.
+Сначала необходимо создать новый **mint-аккаунт** для NFT, который вы хотите выпустить, и **associated token account** для его владения.
 
 ```csharp
 var mint = new Account();
@@ -11,7 +12,7 @@ var associatedTokenAccount = AssociatedTokenAccountProgram
     .DeriveAssociatedTokenAccount(Web3.Account, mint.PublicKey);
 ```
 
-Secondly, let's define the metadata of the NFT.
+Во-вторых, давайте определим **метаданные** NFT.
 
 ```csharp
 var metadata = new Metadata()
@@ -24,14 +25,14 @@ var metadata = new Metadata()
 };
 ```
 
-We can now construct the transaction, whichi consists of 5 istructions:
+Теперь мы можем собрать транзакцию, которая состоит из 5 инструкций:
 
-- Creating the Mint Account
-- Initilizing the Mint Account
-- Creattin the AssociatedTokenAccount
-- Minting the NFT
-- Creating the Metadata Account
-- Creating the Master Edition
+1. **Создание Mint-аккаунта**
+2. **Инициализация Mint-аккаунта**
+3. **Создание Associated Token Account**
+4. **Выпуск NFT (Minting)**
+5. **Создание Metadata Account**
+6. **Создание Master Edition**
 
 ```csharp
 var transaction = new TransactionBuilder()
@@ -86,7 +87,7 @@ var transaction = new TransactionBuilder()
 );
 ```
 
-Finally, let's sign and send the transaction:
+Наконец, давайте **подпишем и отправим транзакцию**:
 
 ```csharp
 var tx = Transaction.Deserialize(transaction.Build(new List<Account> {Web3.Account, mint}));
@@ -94,6 +95,6 @@ var res = await Web3.Wallet.SignAndSendTransaction(tx);
 Debug.Log(res.Result);
 ```
 
-The console will print the transaction signature, which you can investigate in the inspector and should looks similar to this [transaction](https://explorer.solana.com/tx/TPSviDzpzTFEyfJkYwmQzqaPJTTsGMZTuPuG9q1LiKrhZnwg5WWHH7ARR8eYAdoB8rt8qcjKwqbcZj43b84Ls5C?cluster=devnet),
+В консоли будет выведена **подпись **[транзакции](https://explorer.solana.com/tx/TPSviDzpzTFEyfJkYwmQzqaPJTTsGMZTuPuG9q1LiKrhZnwg5WWHH7ARR8eYAdoB8rt8qcjKwqbcZj43b84Ls5C?cluster=devnet), которую можно проверить в инспекторе. Она будет выглядеть примерно так: 
 
-You can lookup the mint address in the explorer, which should be similar to this [NFT](https://explorer.solana.com/address/4X199VtLKVJUeLMXzwXzSsFgapVQcrYx9vnqxNDkH2Xa?cluster=devnet)
+Вы можете найти **адрес mint** в обозревателе, который будет выглядеть примерно так: [NFT](https://explorer.solana.com/address/4X199VtLKVJUeLMXzwXzSsFgapVQcrYx9vnqxNDkH2Xa?cluster=devnet)

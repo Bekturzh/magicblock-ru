@@ -1,23 +1,24 @@
 ---
-title: SOAR
-description: "Solana On-Chain Achievement & Ranking"
+title: "SOAR"
+description: "Достижения и рейтинг на блокчейне Solana
+"
 ---
 
-SOAR is a program that provides a seamless solution for managing leaderboards, achievements, players' profiles and automatic rewards distribution on the Solana blockchain. Currently supporting invocation from a TypeScript client, the integration in Solana.Unity-SDK will be coming soon.
+**SOAR** — это программа, которая предоставляет удобное решение для управления таблицами лидеров, достижениями, профилями игроков и автоматическим распределением наград в блокчейне Solana. В настоящее время поддерживается вызов через клиент на TypeScript; интеграция в **Solana.Unity-SDK** будет доступна скоро.
 
-## Contents
+## Содержание
 
 - [SOAR SDK](#soar-sdk)
-  - [Getting started](#quick-start)
-  - [Classes](#classes)
+  - [Начало Работы](#quick-start)
+  - [Классы](#classes)
     - [SoarProgram](#soarprogram)
     - [GameClient](#gameclient)
     - [InstructionBuilder](#instructionbuilder)
-  - [Tests](#tests)
+  - [Тесты](#tests)
 
-## Quick start
+## Быстрый старт 
 
-### Create a new game
+### Создать новую игру
 
 ```typescript
 import { SoarProgram, GameType, Genre } from "@magicblock-labs/soar-sdk";
@@ -47,7 +48,7 @@ let { newGame, transaction } = await client.initializeNewGame(
 await web3.sendAndConfirmTransaction(connection, transaction);
 ```
 
-### Create a leaderboard
+### Создать таблицу лидеров
 
 ```typescript
 const transactionIx = await client.addNewGameLeaderBoard(
@@ -64,7 +65,7 @@ await web3.sendAndConfirmTransaction(connection, transactionIx.transaction, [
 ]);
 ```
 
-### Submit a score
+### Отправить результат
 
 ```typescript
 const score = 10;
@@ -84,47 +85,47 @@ await web3.sendAndConfirmTransaction(connection, transactionIx.transaction, [
 ]);
 ```
 
-## Classes
+### **Классы**
 
-### SoarProgram
+**SoarProgram**
 
-The `SoarProgram` class gives client access to every instruction in the on-chain SOAR program.
+Класс **SoarProgram** предоставляет клиенту доступ ко всем инструкциям программы **SOAR** на блокчейне.
 
-It also gives utility functions for deriving PDAs:
+Он также содержит утилитарные функции для вычисления **PDA** (Program Derived Addresses):
 
 ```typescript
 const user = Keypair.generate().publicKey;
 const playerAddress = client.utils.derivePlayerAddress(user)[0];
 ```
 
-fetching an account:
+Получение данных аккаунта:
 
 ```typescript
 const account = await client.fetchLeaderBoardAccount(address);
 ```
 
-and fetching multiple accounts:
+И получение данных нескольких аккаунтов:
 
 ```typescript
 const accounts = await client.fetchAllLeaderboardAccounts([]);
 ```
 
-### GameClient
+### **GameClient**
 
-The `GameClient` provides a more specific set of functions tailored to a single Game account.
+Класс **GameClient** предоставляет более специализированный набор функций, предназначенных для работы с одной учетной записью игры.
 
 ```typescript
 import { GameClient } from "@magicblock-labs/soar-sdk";
 ```
 
-Get an instance representing an existing on-chain Game account:
+Получение экземпляра, представляющего существующую on-chain учетную запись игры:
 
 ```typescript
 const soar = SoarProgram.getFromConnection(connection, defaultPayer);
 const gameClient = new GameClient(soar, address);
 ```
 
-Register a new game:
+Регистрация новой игры:
 
 ```typescript
 const soar = SoarProgram.getFromConnection(connection, defaultPayer);
@@ -151,7 +152,7 @@ const achievement = game.recentAchievementAddress();
 import { InstructionBuilder } from "@magicblock-labs/soar-sdk";
 ```
 
-The InstructionBuilder provides a set of methods for conveniently bundling transactions.
+**InstructionBuilder** предоставляет набор методов для удобного формирования и упаковки транзакций.
 
 ```typescript
 const transaction = await this.builder
