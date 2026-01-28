@@ -203,13 +203,13 @@
           {
             "group": "Инструменты ",
             "pages": [
-              "pages/tools/introduction"
-            ]
-          },
-          {
-            "group": "Кошельки и вход в сеть ",
-            "pages": [
-              "pages/tools/wallets-and-onramp/overview"
+              "pages/tools/introduction",
+              {
+                "group": "Кошельки и вход в сеть ",
+                "pages": [
+                  "pages/tools/wallets-and-onramp/overview"
+                ]
+              }
             ]
           },
           {

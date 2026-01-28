@@ -1,29 +1,36 @@
 ---
-description: "Building your game logic onchain"
-title: "Отслеживание отображений и состояния"
+title: "Фреймворк"
+description: "Создание логики вашей игры на блокчейне"
 ---
 
 <CardGroup cols={2}>
-  <Card title="Installation" icon="bolt" iconType="duotone" href="/pages/tools/bolt/getting-started/installation">
-    Set up your system and install the BOLT CLI.
+  <Card title="Установка " icon="bolt" iconType="duotone" href="/pages/tools/bolt/getting-started/installation">
+    Настройте свою систему и установите BOLT CLI
   </Card>
   <Card title="ECS" icon="block" iconType="duotone" href="/pages/tools/bolt/getting-started/create-component">
-    Explore the ECS pattern for your onchain game.
+    Изучите паттерн ECS для вашей игры на блокчейне**Состояние и логика**
   </Card>
 </CardGroup>
 
-## State & logic
+Чтобы построить игру или приложение **на блокчейне (onchain)**, вам нужно будет ознакомиться с **программами Solana (смарт-контрактами)**. Возможно, вы уже знакомы с **Anchor** — одним из самых популярных инструментов для написания смарт-контрактов на Solana.
 
-To build a game or an application onchain, you'll need to familiarize with Solana programs (smart contracts). You might be already familiar with [Anchor](https://www.anchor-lang.com/), one of the most used toolkit for writing smart contract on Solana.
+**BOLT** — это фреймворк, который расширяет функциональность Anchor, предоставляя **стандартизированный способ моделирования логики вашей игры** с использованием **паттерна Entity Component System (ECS)**.
 
-BOLT is a framework that **extends Anchor functionalities** to include a standardized way to model your game's logic using an Entity Components Systems (ECS) pattern.
+**ECS (Entity Component System)** — это модульный паттерн, который **разделяет логику и состояние**, облегчая повторное использование кода, его расширяемость и повышая производительность в крупных проектах. Виртуальная машина Solana (SVM) также использует подход, похожий на ECS, так как **состояние (accounts)** и **логика (programs)** изначально разделены.
 
-The ECS is a modular pattern that decouples logic from state and facilitates code reusability, extensibility and performance improvement for large-scale projects. The Solana Virtual Machine (SVM) also makes use of a paradigm similar to an ECS given that state (accounts) and the logic (programs) are natively separated.
+---
 
-In the Entity Component System:
+### **В Entity Component System:**
 
-- **Entities** are general-purpose object represented by a unique identifier. They don't contain any data or behaviour but serves as an identifier for a bundle of components.
-- **Components** are raw data structures. For instance, a Position Component might contain some x, y, and z coordinates. This is concept is essentially equivalent to accounts on Solana.
-- **Systems** perform the game logic by acting upon entities that have specific components. Systems are essentialy programs on Solana, which only specify the logic and the accounts they operate on.
+**Entities (Сущности)** — это объекты общего назначения, представленные **уникальным идентификатором**. Они **не содержат данных и поведения**, а служат лишь как идентификатор для набора компонентов.
 
-While BOLT supports all the functionalities of Anchor, adopting the ECS pattern is helpful if you want to reuse existing components/system or enable simpler mods and extension for your game.
+**Components (Компоненты)** — это **структуры данных**. Например, компонент **Position** может содержать координаты **x, y, z**. По сути, эта концепция эквивалентна **accounts в Solana**.
+
+**Systems (Системы)** — выполняют **логику игры**, действуя над сущностями, которые имеют определённые компоненты. Системы — это, по сути, **программы на Solana**, которые только определяют логику и **аккаунты, с которыми они работают**.
+
+---
+
+Хотя **BOLT** поддерживает все возможности Anchor, **использование паттерна ECS полезно**, если вы хотите:
+
+- повторно использовать уже существующие компоненты и системы,
+- упростить модификации и расширения для вашей игры.
