@@ -238,7 +238,7 @@
             ]
           },
           {
-            "group": "Cranks",
+            "group": "Активаторы",
             "pages": [
               "pages/tools/crank/introduction",
               "pages/tools/crank/implementation"
