@@ -1,15 +1,15 @@
 ---
-description: "Derive the Pyth Lazer price feed account and decode its bytes"
 title: "Реализация"
+description: "Получите (выведите) аккаунт ценового фида Pyth Lazer и декодируйте его байты"
 ---
 
-## Deriving the Price Feed Account
+## Получение аккаунта ценового фида
 
-We derive the PDA of the price account using the following seeds:
+Мы выводим PDA аккаунта цены, используя следующие сиды (seeds)
 
 - **"price feed"** (buffer)
 - **"pyth-lazer"** (buffer)
-- **feedID** (buffer) — the asset you want. Find the supported feeds [here](https://github.com/magicblock-labs/real-time-pricing-oracle/blob/main/pyth_lazer_list.json).
+- **feedID** (buffer) — выбранный актив. Список поддерживаемых фидов можно найти [здесь](https://github.com/magicblock-labs/real-time-pricing-oracle/blob/main/pyth_lazer_list.json)
 - **price program id** — `PriCems5tHihc6UDXDjzjeawomAwBduWMGAi8ZUjppd`
 
 ```ts
@@ -23,13 +23,15 @@ function deriveFeedAddress (feedId: string) {
 }
 ```
 
-## Parsing the Account
+## Разбор данных аккаунта
 
-The on‑chain account stores a header and fields for price data. We read raw bytes and decode.
+Ончейн-аккаунт хранит заголовок и поля с ценовыми данными. Мы читаем сырые байты и выполняем декодирование.
 
-- **Price offset**: 73 bytes from start
-- **Type**: signed 64‑bit integer (`i64`)
-- **Apply exponent**: scale the raw price using the account's exponent
+**Смещение цены:** 73 байта от начала
+
+**Тип:** Знаковое 64-битное целое число (i64)
+
+**Применение экспоненты:** Масштабируйте сырую цену, используя экспоненту аккаунта
 
 ```ts
 const addr = deriveFeedAddress(feed.id);
@@ -41,14 +43,14 @@ const price = Number(raw) * Math.pow(10, feed.exponent);
 ```
 
 <CardGroup cols={3}>
-  <Card title="Live Demo" icon="waveform" iconType="duotone" href="https://pyth-template.magicblock.app/">
-    Real‑time price stream
+  <Card title="Демо" icon="waveform" iconType="duotone" href="https://pyth-template.magicblock.app/">
+    Поток цен в реальном времени
   </Card>
-  <Card title="Implementation" icon="book" iconType="duotone" href="/pages/tools/oracle/implementation">
-    Learn how to access our oracles onchain
+  <Card title="Реализация" icon="book" iconType="duotone" href="/pages/tools/oracle/implementation">
+    Узнайте, как получить доступ к нашим оракулам в ончейне
   </Card>
-  <Card title="Code Example" icon="code" iconType="duotone" href="https://github.com/magicblock-labs/real-time-pricing-oracle
+  <Card title="Пример Кода" icon="code" iconType="duotone" href="https://github.com/magicblock-labs/real-time-pricing-oracle
 ">
-    Check out our Github Repo
+    Ознакомьтесь с нашим репозиторием на GitHub
   </Card>
 </CardGroup>
