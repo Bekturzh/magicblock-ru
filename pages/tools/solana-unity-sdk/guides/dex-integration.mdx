@@ -1,15 +1,16 @@
 ---
 title: "Интеграция DEX с Orca"
-description: "Orca is natively supported in the SDK. Utility methods are provided to easily build the transactions needed to make swaps, open positions, manage cash and interact with Whirlpools."
+description: "Orca нативно поддерживается в SDK. Предоставляются утилитарные методы для простого формирования транзакций, необходимых для выполнения свопов, открытия позиций, управления средствами и взаимодействия с **Whirlpools**.
+"
 ---
 
-## Orca
+## **Orca**
 
-Orca is the easiest place to trade cryptocurrency on the Solana blockchain. For a detailed description refer to the official [Orca documentation](https://docs.orca.so/orca-for-traders/master) and [Orca Developer Portal](https://orca-so.gitbook.io/orca-developer-portal/orca/welcome).
+Orca — это самый простой способ обмена криптовалют на блокчейне Solana. Для подробного описания обратитесь к официальной [документации Orca](https://docs.orca.so/) и [Orca Developer Portal](https://developer.orca.so/).
 
-## Perform a Swap
+## **Выполнить своп**
 
-- Create an IDex istance, providing a default account and and the RPC client istance:
+Создайте экземпляр **IDex**, указав аккаунт по умолчанию и экземпляр **RPC client**:
 
 ```csharp
 IDex dex = new OrcaDex(
@@ -18,20 +19,20 @@ IDex dex = new OrcaDex(
 )
 ```
 
-- Create an IDex istance:
+- Создайте экземпляр **IDex**:
 
 ```csharp
 TokenData tokenA = await dex.GetTokenBySymbol("USDC");
 TokenData tokenB = await dex.GetTokenBySymbol("ORCA");
 ```
 
-- Find the whirlpool:
+- Найдите **Whirlpool**:
 
 ```csharp
 Pool whirlpool = await dex.FindWhirlpoolAddress(tokenA.MintAddress, tokenB.MintAddress)
 ```
 
-- Get a swap quote for 1 USDC:
+- Получите котировку свопа для **1 USDC**:
 
 ```csharp
 SwapQuote swapQuote = await dex.GetSwapQuoteFromWhirlpool(
@@ -47,7 +48,7 @@ var quote = DecimalUtil.FromBigInteger(swapQuote.EstimatedAmountOut, tokenB.Deci
 Debug.Log(quote); // Amount of espected Orca token to receive
 ```
 
-- Create the swap transaction:
+- Создайте транзакцию для свопа:
 
 ```csharp
 Transaction tx = await dex.SwapWithQuote(
@@ -56,15 +57,15 @@ Transaction tx = await dex.SwapWithQuote(
 );
 ```
 
-- Sign and send the swap transaction:
+- Подпишите и отправьте транзакцию свопа:
 
 ```csharp
 await WalletH.Base.SignAndSendTransaction(tx);
 ```
 
-## Open a position and increase the liquidity of the ORCA/USDC whirlpool
+## Откройте позицию и увеличьте ликвидность **Whirlpool ORCA/USDC**
 
-An example of adding 5 ORCA and 5 USDC to the liquidity of the pool, minting a metaplex NFT representing the position
+Пример добавления **5 ORCA** и **5 USDC** в ликвидность пула с одновременным выпуском **NFT Metaplex**, представляющего эту позицию. 
 
 ```csharp
 OrcaDex dex = new OrcaDex(
