@@ -267,7 +267,7 @@
               "pages/tools/solana-unity-sdk/overview",
               "pages/tools/solana-unity-sdk/contribution-guide",
               {
-                "group": "Getting Started",
+                "group": "Начало работы",
                 "pages": [
                   "pages/tools/solana-unity-sdk/getting-started/installation",
                   "pages/tools/solana-unity-sdk/getting-started/configuration",
@@ -275,7 +275,7 @@
                 ]
               },
               {
-                "group": "Core Concepts",
+                "group": "Основные концепции",
                 "pages": [
                   "pages/tools/solana-unity-sdk/core-concepts/associated-token-account",
                   "pages/tools/solana-unity-sdk/core-concepts/transfer-token",
@@ -285,7 +285,7 @@
                 ]
               },
               {
-                "group": "Guides",
+                "group": "Руководство ",
                 "pages": [
                   "pages/tools/solana-unity-sdk/guides/mint-an-nft",
                   "pages/tools/solana-unity-sdk/guides/host-your-game",
