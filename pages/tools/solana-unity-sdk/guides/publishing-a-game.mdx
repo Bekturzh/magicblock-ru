@@ -2,11 +2,11 @@
 title: "Опубликуйте вашу игру как xNFT"
 ---
 
-## Compile the game for xNFT
+## Скомпилируйте игру для **xNFT**
 
-You can now just compile your game to WebGL without any extra steps. Just make sure you have the latest version of the SDK and you're good to go.
+Теперь вы можете просто скомпилировать игру в **WebGL** без дополнительных шагов. Убедитесь, что у вас установлена последняя версия SDK.
 
-Deploy your game as a normal WebGL game as you will need the url for publishing the xNFT in next step.
+Разверните игру как обычную **WebGL**-игру — вам понадобится её URL для публикации **xNFT** на следующем шаге.
 
 <Card title="One build to rule them all" icon="lightbulb" iconType="duotone">
   Your WebGL game will work both in the browser and inside Backpack, no need to build and host a separate version for each platform.
@@ -16,46 +16,52 @@ Deploy your game as a normal WebGL game as you will need the url for publishing 
   Follow [this guide](/Build/SolanaUnitySDK/guides/host-your-game) to compile your game to WebGL and host the build on Github pages
 </Card>
 
-### (Optional) Use the xNFT WebGL Template
+### (Необязательно) Использование шаблона **xNFT WebGL**
 
-A customized WebGL Template is also provided for easier deployment of your game as an xNFT. It's not required, but it's recommended as it makes the game fully responsive to the screen size, and it will just look good when running in both the browser and as a xNFT app.
+Также предоставляется **кастомизированный WebGL шаблон** для более удобного развертывания вашей игры как **xNFT**. Он не обязателен, но рекомендуется, так как делает игру полностью адаптивной под размер экрана и обеспечивает красивый вид как в браузере, так и в виде приложения **xNFT**.
 
-To use the xNFT WebGL Template, follow these steps:
+Чтобы использовать шаблон **xNFT WebGL**, выполните следующие шаги:
 
-- Open [Build Settings](https://docs.unity3d.com/Manual/BuildSettings.html) window and change to WebGL platform if you haven't already:
-  - Select WebGL as the platform
-  - Click the **Switch Platform** button to apply changes. <img src="/images/switch_platform.png" alt="" />
+Откройте окно  [Build Settings](https://docs.unity3d.com/Manual/BuildSettings.html) и переключитесь на платформу **WebGL**, если вы ещё этого не сделали:
 
-When your Unity project is set to WebGL Platform, the SDK automagically imports a new WebGL Template into the /Assets/WebGLTemplate folder, named xNFT:
+1. Выберите **WebGL** в качестве платформы.
+2. Нажмите кнопку **Switch Platform**, чтобы применить изменения.
+
+   . <img src="/images/switch_platform.png" alt="" />
+
+Когда ваш проект Unity настроен на платформу **WebGL**, SDK автоматически импортирует новый **WebGL Template** в папку **/Assets/WebGLTemplate** с именем **xNFT**.
 
 ![](/images/xnft_webgl_template_imported.png)
 
-- Open **Player Settings** window from the Build Settings, and select the xNFT template.
+- Откройте окно **Player Settings** через **Build Settings** и выберите шаблон **xNFT**.
 
   ![](/images/select_xnft_template.png)
 
-Now you can build your game and host it as a normal WebGL game.
+Теперь вы можете собрать вашу игру и разместить её как обычную **WebGL**-игру.
 
-## Publish your game as an xNFT
+## Опубликуйте вашу игру как **xNFT**
 
-If you haven't already, go get your Backpack user. You can download Backpack [here](https://www.backpack.app/downloads). After you have your game hosted in a webserver and you have Backpack account, you can just go to https://www.xnft.gg/publish to deploy your xnft in mainnet-beta or https://devnet.xnft.gg/publish to deploy the xnft in devnet.
+Если вы ещё этого не сделали, создайте аккаунт **Backpack**. Скачать его можно [здесь](https://backpack.app/). После того как ваша игра размещена на веб-сервере и у вас есть аккаунт Backpack, вы можете перейти на:
 
-Connect your Backpack wallet and then follow the instructions:
+- https://www.xnft.gg/publish для публикации на **mainnet-beta**
+- https://devnet.xnft.gg/publish для публикации на **devnet**
 
-- copy this basic [xnft.json](https://github.com/coral-xyz/xnft-quickstart/blob/master/xnft.json) configuration file.
-- edit the "entrypoints" "default" "web" to point to your game's url
-- edit xnft.json (add a "tag": "game" line) and add your app's icon and screenshots in an Assets folder.
-- Zip togehter the xnft.json file and the Assets folder.
-- Go to [xnft.gg/publish](https://www.xnft.gg/publish)
-- Drop the zipped Manifest and mint.
+Подключите ваш кошелек Backpack и выполните следующие шаги:
 
-  ![](/images/drop_manifest.png)
+1. Скопируйте базовый файл конфигурации **xnft.json**.
+2. Отредактируйте поля `"entrypoints" -> "default" -> "web"`, указав URL вашей игры.
+3. Отредактируйте **xnft.json**, добавив строку `"tag": "game"`, а также добавьте иконку приложения и скриншоты в папку **Assets**.
+4. Запакуйте файл **xnft.json** и папку **Assets** в один **zip**.
+5. Перейдите на [xnft.gg/publish](https://www.xnft.gg/publish).
+6. Загрузите **zip** с манифестом и выполните **mint**.
 
-  Congrats! You're done publishing your game as an xNFT!
+   ![](/images/drop_manifest.png)
 
-## Video Demo
+   Поздравляем! Вы успешно опубликовали вашу игру как **xNFT**!
 
-Here's a quick demo on how you can build your game and test it in the browser and as an xNFT app inside Backpack.
+   **Демо-видео**
+
+   Вот краткий пример того, как собрать игру и протестировать её в браузере, а также как приложение **xNFT** внутри **Backpack**.
 
 <div style={{ position:"relative",paddingBottom:"62.5%",height:0 }}>
 <iframe src="https://www.youtube.com/embed/J4W3vzal5_I" frameBorder={0} webkitallowfullscreen mozallowfullscreen allowFullScreen style={{ position:"absolute",top:0,left:0,width:"100%",height:"100%" }} />
