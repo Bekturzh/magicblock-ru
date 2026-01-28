@@ -1,30 +1,33 @@
 ---
-description: "Integrate Jupiter v6 API in your game"
+description: "Интеграция API **Jupiter v6** в вашу игру
+"
 title: "Интеграция с Jupiter V6"
 ---
 
-## Jupiter
+## **Jupiter**
 
-Jupiter V6 is natively supported in the SDK. Utility methods are provided to easily get swap quotes, build and send the transactions needed to perform swaps. Jupiter is the key liquidity aggregator for Solana, offering the widest range of tokens and best route discovery between any token pair. For a detailed description refer to the official [Jupiter documentation](https://station.jup.ag/).
+**Jupiter V6** поддерживается нативно в SDK. Предоставляются утилитарные методы для простого получения котировок для свопа, формирования и отправки транзакций, необходимых для выполнения свопов. Jupiter является ключевым агрегатором ликвидности для Solana, предлагая наибольший выбор токенов и оптимальный поиск маршрута между любой парой токенов. Для подробного описания обратитесь к официальной документации.
+
+[Jupiter documentation](https://station.jup.ag/).
 
 ---
 
-## Perform a Swap
+## Выполнить своп
 
-Create an IDex istance, providing a default account:
+Создайте экземпляр **IDex**, указав аккаунт по умолчанию:
 
 ```csharp
 IDexAggregator dex = new JupiterDexAg(Web3.Account);
 ```
 
-Create an IDex istance:
+Создайте экземпляр **IDex**:
 
 ```csharp
 TokenData tokenA = await dex.GetTokenBySymbol("SOL");
 TokenData tokenB = await dex.GetTokenBySymbol("USDC");
 ```
 
-Get a swap quote for 1 SOL:
+Получите котировку свопа для 1 SOL:
 
 ```csharp
 SwapQuoteAg swapQuote = await dex.GetSwapQuote(
@@ -39,7 +42,7 @@ var quote = DecimalUtil.FromBigInteger(swapQuote.OutputAmount, tokenB.Decimals);
 Debug.Log(quote); // Amount of espected USDC token to receive
 ```
 
-Display the route path:
+Отобразите путь маршрута:
 
 ```csharp
 Debug.Log(string.Join(" -> ", swapQuote.RoutePlan.Select(p => p.SwapInfo.Label)));
@@ -47,36 +50,36 @@ Debug.Log(string.Join(" -> ", swapQuote.RoutePlan.Select(p => p.SwapInfo.Label))
 // Lifinity V2 -> Whirlpool
 ```
 
-Create the swap transaction:
+Создайте транзакцию для свопа:
 
 ```csharp
 Transaction tx = await dex.Swap(swapQuote);
 ```
 
-Sign and send the swap transaction:
+Подпишите и отправьте транзакцию свопа:
 
 ```csharp
 await Web3.Wallet.SignAndSendTransaction(tx);
 ```
 
-## Use the Jupiter Payments API
+## Использование Jupiter Payments API
 
-The Jupiter Payments API is also available, enabling you to utilize Jupiter + SolanaPay for facilitating user payments with any SPL token, allowing pricing in USDC or other tokens.
+API **Jupiter Payments** также доступен, что позволяет использовать **Jupiter** вместе с **SolanaPay** для проведения платежей пользователей любым SPL-токеном, с возможностью указания цены в USDC или других токенах.
 
-Create an IDex istance, providing a default account:
+Создайте экземпляр **IDex**, указав аккаунт по умолчанию:
 
 ```csharp
 IDexAggregator dex = new JupiterDexAg(Web3.Account);
 ```
 
-Create an IDex istance:
+Создайте экземпляр **IDex**:
 
 ```csharp
 TokenData tokenA = await dex.GetTokenBySymbol("SOL");
 TokenData tokenB = await dex.GetTokenBySymbol("USDC");
 ```
 
-Get a swap quote for the amount of SOL needed for obtaining 5 UDSC:
+Получите котировку свопа для количества **SOL**, необходимого для получения **5 USDC**:
 
 ```csharp
 SwapQuoteAg swapQuote = await dex.GetSwapQuote(
@@ -92,13 +95,13 @@ var quote = DecimalUtil.FromBigInteger(swapQuote.InputAmount, tokenA.Decimals);
 Debug.Log(quote); // Amount of espected SOL token to pay
 ```
 
-Create the swap transaction:
+Создайте транзакцию свопа:
 
 ```csharp
 Transaction tx = await dex.Swap(swapQuote);
 ```
 
-Sign and send the swap transaction:
+Подпишите и отправьте транзакцию свопа:
 
 ```csharp
 await Web3.Wallet.SignAndSendTransaction(tx);
