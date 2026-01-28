@@ -265,13 +265,13 @@
             "group": "Solana Unity SDK",
             "pages": [
               "pages/tools/solana-unity-sdk/overview",
-              "pages/tools/solana-unity-sdk/contribution-guide",
               {
                 "group": "Начало работы",
                 "pages": [
                   "pages/tools/solana-unity-sdk/getting-started/installation",
                   "pages/tools/solana-unity-sdk/getting-started/configuration",
-                  "pages/tools/solana-unity-sdk/getting-started/sample-scene"
+                  "pages/tools/solana-unity-sdk/getting-started/sample-scene",
+                  "pages/tools/solana-unity-sdk/contribution-guide"
                 ]
               },
               {
