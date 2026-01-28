@@ -1,22 +1,21 @@
 ---
-title: "Introduction"
-description: "What are Session Keys?"
+title: "Введение"
+description: "Что такое сессионные ключи?"
 ---
 
-Session Keys are ephemeral keys with fine-grained instruction scoping for tiered access in your Solana Programs.
+**Сессионные ключи** — это эфемерные (временные) ключи с тонкой настройкой области разрешённых инструкций, которые обеспечивают многоуровневый доступ в ваших программах Solana.
 
-Session keys are a giant leap for improving UX for users as they take away the need for repeated wallet popups while a user performs actions in-game like purchases or on-chain interactions. The expiry and access are stored at the contract level which immunes session keys from potential security vulnerabilities. The Session Keys parameters can be duration, the maximum amount of tokens spent, amount of transactions or any other function specific to your use case.
+Сессионные ключи — это большой шаг вперёд в улучшении UX, поскольку они избавляют пользователей от необходимости постоянно подтверждать действия во всплывающих окнах кошелька при выполнении игровых действий, таких как покупки или ончейн-взаимодействия. Срок действия и права доступа хранятся на уровне смарт-контракта, что защищает сессионные ключи от потенциальных уязвимостей безопасности. Параметры сессионных ключей могут включать: длительность сессии, максимальное количество токенов, доступных к расходованию, количество транзакций или любые другие параметры, специфичные для вашего кейса.
 
-You can also provide a layered security model which allows tiered access to a session key making sure a user’s assets are always secure and can’t be accessed by the session keys.
-This type of layered security is a standard model in web2 applications and provides a stronger defence against attacks and helps ensure the security of your users' asset. This is now possible in web3 with the use of Session Keys at the contract level.
+Также можно реализовать многоуровневую модель безопасности, которая обеспечивает разграниченный доступ для сессионных ключей, гарантируя, что активы пользователя всегда остаются в безопасности и не могут быть напрямую доступны через сессионные ключи. Такая модель многоуровневой защиты является стандартом для Web2-приложений и обеспечивает более надёжную защиту от атак, помогая сохранить безопасность пользовательских активов. Теперь это возможно и в Web3 — благодаря использованию сессионных ключей на уровне смарт-контракта.
 
-#### Example use cases for Session Keys
+**Примеры использования сессионных ключей:**
 
-- An uninterrupted gaming experience for an on-chain game.
-- A seamless experience for in-app NFTs purchase
-- A layered security model for your game/dApp
+- Непрерывный игровой процесс в ончейн-играх
+- Бесшовная покупка NFT внутри приложения
+- Многоуровневая модель безопасности для вашей игры или dApp
 
-<Card title="Program" icon="lightbulb" iconType="duotone" color="#ca8b04">
-  The original Session key program was developed by *[Gum](https://gum.fun/)*.
-  The newly deployed program is 'KeyspM2ssCJbqUhQ4k7sveSiY4WjnYsrXkC8oDbwde5'
+<Card title="Программа" icon="lightbulb" iconType="duotone" color="#ca8b04">
+  Оригинальная программа **сессионных ключей**  была разработана командой **Gum**.\
+  Новая развернутая программа имеет адрес: **KeyspM2ssCJbqUhQ4k7sveSiY4WjnYsrXkC8oDbwde5**.
 </Card>

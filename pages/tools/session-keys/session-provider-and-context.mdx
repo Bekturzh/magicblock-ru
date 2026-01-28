@@ -1,16 +1,13 @@
 ---
-title: "Session Provider & Context"
-description:
-  "Understand the usage of the SessionWalletProvider and the context it provides,
-  enabling easy access to the session wallet functionalities across your
-  application components?"
+title: "Поставщик сессий и контекст"
+description: "Поймите использование SessionWalletProvider и предоставляемого им контекста, который обеспечивает лёгкий доступ к функционалу сессионного кошелька во всех компонентах вашего приложения."
 ---
 
-`SessionWalletProvider` is a higher-order component that wraps around your app components to provide the `sessionWallet` context throughout the application.
+**SessionWalletProvider** — это компонент высшего порядка, который оборачивает компоненты вашего приложения и предоставляет контекст **sessionWallet** во всём приложении.
 
-Here's an example of how to use the `SessionWalletProvider`:
+Пример использования **SessionWalletProvider**:
 
-1. Create a new file named `components/SessionProvider.tsx`
+1. Создайте новый файл с именем **components/SessionProvider.tsx**
 
 ```typescript
 // components/SessionProvider.tsx
@@ -48,7 +45,7 @@ const SessionProvider: React.FC<SessionProviderProps> = ({ children }) => {
 export default SessionProvider;
 ```
 
-2. In your `_app.tsx` file, wrap the SessionProvider around the entire app to ensure it's accessible within every component:
+2. В файле **\_app.tsx** оберните всё приложение в **SessionProvider**, чтобы он был доступен во всех компонентах:
 
 ```typescript
 // pages/_app.tsx
@@ -96,15 +93,15 @@ export default function App({ Component, pageProps }: AppProps) {
 }
 ```
 
-_**Note: Ensure that all your Solana wallet adapter contexts are the parent of the SessionProvider.**_
+Примечание: убедитесь, что все ваши контексты адаптера кошелька Solana находятся **выше** по иерархии относительно **SessionProvider**.
 
-3. With the SessionWalletProvider set up, you can now use the `useSessionWallet` hook in your components:
+3. После настройки **SessionWalletProvider** вы можете использовать хук **useSessionWallet** в ваших компонентах:
 
-### Using `useSessionWallet` in components
+Использование **useSessionWallet** в компонентах
 
-`useSessionWallet` is a custom hook that provides access to the session wallet context value. Use this hook in any component wrapped by the SessionWalletProvider.
+**useSessionWallet** — это кастомный хук, который предоставляет доступ к значению контекста сессионного кошелька. Используйте этот хук в любом компоненте, обёрнутом **SessionWalletProvider**.
 
-To properly understand what the `useSessionWallet` hook provides, we need to examine the `SessionWalletInterface`. This is what `useSessionKeyManager` returns, providing the methods needed to utilize session keys as well as transaction signing and sending capabilities.
+Чтобы правильно понять, что предоставляет хук **useSessionWallet**, необходимо изучить **SessionWalletInterface**. Именно его возвращает **useSessionKeyManager**, предоставляя методы для работы с сессионными ключами, а также возможности для подписи и отправки транзакций.
 
 ```typescript
 interface SessionWalletInterface {
@@ -156,7 +153,7 @@ interface SessionWalletInterface {
 }
 ```
 
-This will help us understand how to use the sessionWallet in our code for creating session tokens as well as revoking them when no longer needed.
+Это поможет нам понять, как использовать **sessionWallet** в нашем коде для создания сессионных токенов, а также их отзыва, когда они больше не нужны.
 
 ```typescript
 import { useSessionWallet } from "@magicblock-labs/gum-react-sdk";

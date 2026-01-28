@@ -1,34 +1,37 @@
 ---
-title: "Integrating Sessions in your Program"
-description: "Integrate and manage sessions in your Solana Programs"
+title: "Поставщик сессий и контекст"
+description: "Интеграция и управление сессиями в ваших программах Solana"
 ---
 
-This guide demonstrates how to integrate Session Keys into your Solana Anchor programs, using a simple counter program as an example.
+Это руководство демонстрирует, как интегрировать сессионные ключи в ваши программы Solana Anchor, используя в качестве примера простую программу счётчика.
 
-## Installation
+## Установка
 
-First, add the session-keys crate to your Cargo.toml:
+Сначала добавьте пакет сессионные ключи в ваш проект Cargo.toml:
 
 ```toml
 [dependencies]
 session-keys = { version = "1.0.0", features = ["no-entrypoint"] }
 ```
 
-Or use the cargo command:
+Или используйте команду cargo
 
 ```bash
 cargo add session-keys --features no-entrypoint
 ```
 
-## Usage 
+## Использование
 
-1. Importing session-keys:
+1. Ипортировать сессионные ключи:
+
 ```rust
    use session_keys::{SessionError, SessionToken, session_auth_or, Session};
 ```
-This line imports the necessary components from the session-keys crate.
 
-2. Deriving the Session trait:
+Эта строка импортирует необходимые компоненты из пакета сессионные ключи.
+
+2. Подключение трейта **Session**:
+
 ```rust
    #[derive(Accounts, Session)]
    pub struct Increment<'info> {
@@ -41,9 +44,11 @@ This line imports the necessary components from the session-keys crate.
      ...
    }
 ```
-The `Session` trait is derived on the `Increment` struct, enabling session functionality.
 
-3. Defining the session token account:
+Трейт **Session** подключается к структуре **Increment**, что позволяет использовать функциональность сессий.
+
+3. Определение аккаунта сессионного токена:
+
 ```rust
    #[session(
        signer = signer,
@@ -51,12 +56,16 @@ The `Session` trait is derived on the `Increment` struct, enabling session funct
    )]
    pub session_token: Option<Account<'info, SessionToken>>,
 ```
-This defines an optional `SessionToken` account, specifying the signer and authority for the session.
-- session_token.authority: account which created the session token
-- counter.authority.key(): account which created the counter
-The authority condition checks if the session token is created by the same user as the counter.
 
-4. Using the `session_auth_or` macro:
+ Это определяет необязательный аккаунт **SessionToken**, указывая подписанта и полномочия для сессии.
+
+- **session_token.authority**: аккаунт, который создал сессионный токен
+- **counter.authority.key()**: аккаунт, который создал счётчик
+
+Условие authority проверяет, что сессионный токен создан тем же пользователем, что и счётчик.
+
+4. Использование макроса **session_auth_or**:
+
 ```rust
    #[session_auth_or(
        ctx.accounts.counter.authority.key() == ctx.accounts.signer.key(),
@@ -66,13 +75,12 @@ The authority condition checks if the session token is created by the same user 
        ...
    }
 ```
-This macro is applied to the `increment` function. 
-It checks for a valid session token, or if not present, verifies that the signer is the counter's authority.
 
-## Full Example
+Этот макрос применяется к функции **increment**. Он проверяет наличие действительного сессионного токена или, если токен отсутствует, удостоверяется, что подписант является владельцем счётчика.
 
-Here's a complete example of a counter program using session keys.
-Each user gets his own counter account, so we can show how authentication is done with session keys.
+## Полный пример
+
+Вот полный пример программы счётчика с использованием сессионных ключей. Каждый пользователь получает свой собственный аккаунт счётчика, чтобы показать, как выполняется аутентификация с помощью сессионных ключей.
 
 ```rust
 use anchor_lang::prelude::*;
@@ -142,9 +150,9 @@ pub struct Counter {
 }
 ```
 
-## Tests
+## Тесты
 
-Here's an example of how to test the counter program with session keys:
+Пример того, как протестировать программу счётчика с использованием сессионных ключей:
 
 ```typescript
 import * as anchor from "@project-serum/anchor";
@@ -232,28 +240,28 @@ describe("counter_session", () => {
 });
 ```
 
-This test suite demonstrates initializing the counter, incrementing it without a session, creating a session token, and then incrementing with the session token.
-The last test is important, as it ensures that only the owner of the counter can increment it.
+Этот набор тестов демонстрирует инициализацию счётчика, его увеличение без сессии, создание сессионного токена и последующее увеличение с использованием сессионного токена. Последний тест особенно важен, так как он гарантирует, что увеличивать счётчик может только его владелец.
 
-## Testing locally
+## Тестирование локально
 
-To test it locally with `solana-test-validator`, you need to start it with the session keys program and account. 
+Для локального тестирования с помощью **solana-test-validator** необходимо запустить его с программой и аккаунтом сессионных ключей.
 
-1. Make sure your Solana CLI points to DEVNET:
+1. Убедитесь, что ваш Solana CLI подключен к **DEVNET**:
+
 ```
 solana config set --url https://api.devnet.solana.com
 ```
 
-2. Dump Session Keys program to local file:
+2. Сохраните программу Session Keys в локальный файл:
+
 ```
 solana program dump KeyspM2ssCJbqUhQ4k7sveSiY4WjnYsrXkC8oDbwde5 ./session-keys.so
 ```
 
-3. Start solana-test-validator with session keys program and account:
-> `-r` - reset the ledger to genesis 
-> `-ud` - URL for Solana's JSON RPC or moniker (-ud = DEVNET)
-> `--clone` - Copy an account from the cluster 
-> `--bpf-program` - add a SBF program to the genesis configuration
+3. Запустите **solana-test-validator** с программой и аккаунтом сессионных ключей:
+
+> `-r` - reset the ledger to genesis `-ud` - URL for Solana's JSON RPC or moniker (-ud = DEVNET) `--clone` - Copy an account from the cluster `--bpf-program` - add a SBF program to the genesis configuration
+
 ```
 solana-test-validator -ud --clone KeyspM2ssCJbqUhQ4k7sveSiY4WjnYsrXkC8oDbwde5 -r --bpf-program KeyspM2ssCJbqUhQ4k7sveSiY4WjnYsrXkC8oDbwde5 ./session-keys.so
 ```

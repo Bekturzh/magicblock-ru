@@ -1,19 +1,17 @@
 ---
-title: "Usage Example"
-description:
-  "Learn how to interact with your dApp using the useSessionKeyManager and
-  SessionWalletProvider through various practical examples"
+title: "Использование менеджера сессионных ключей"
+description: "Научитесь взаимодействовать с вашим dApp с помощью useSessionKeyManager и SessionWalletProvider через различные практические примеры."
 ---
 
-Now that you have set up the hooks and provider, let's look at some examples of using the provided methods.
+Теперь, когда вы настроили хуки и провайдер, давайте рассмотрим несколько примеров использования предоставленных методов.
 
-### Creating a Session
+### Создание сессии
 
-To create a session, call the `createSession` method from the `sessionWallet`. This method accepts three parameters:
+Чтобы создать сессию, вызовите метод **createSession** у **sessionWallet**. Этот метод принимает три параметра:
 
-1. `targetProgramPublicKey`: A `PublicKey` instance representing the target program you want to interact with.
-2. `topUp`: A boolean value, set to `true` if you want to top up an session keypair with `0.01 SOL` initially and \`false\` if you dont want to topUp the session Keypair.
-3. `expiryInMinutes`: An optional parameter, representing the session's expiry time in minutes. The default value is 60 minutes.
+1. **targetProgramPublicKey**: экземпляр **PublicKey**, представляющий целевую программу, с которой вы хотите взаимодействовать.
+2. **topUp**: логическое значение, установите **true**, если хотите первоначально пополнить сессионную пару ключей на 0,01 SOL, и **false**, если не хотите пополнять сессионную пару ключей.
+3. **expiryInMinutes**: необязательный параметр, задающий время жизни сессии в минутах. Значение по умолчанию — 60 минут.
 
 ```typescript
 const handleCreateSession = async () => {
@@ -45,11 +43,11 @@ const handleCreateSession = async () => {
 };
 ```
 
-By calling `createSession`, a new ephemeral keypair is generated and stored on the client-side. The session token is then created and stored alongside the keypair. This enables the user to securely sign transactions using the generated keypair without revealing their actual wallet's private key.
+При вызове **createSession** создаётся новая эфемерная пара ключей, которая хранится на стороне клиента. Затем создаётся сессионный токен и сохраняется вместе с парой ключей. Это позволяет пользователю безопасно подписывать транзакции с помощью сгенерированной пары ключей, не раскрывая приватный ключ своего основного кошелька.
 
-### Signing and Sending a Transaction
+### Подписание и отправка транзакции
 
-To sign and send a transaction, use the `signAndSendTransaction` method. This method first signs the transaction using the ephemeral key pair created during the session. Then, it sends the signed transaction to the Solana network.
+Для подписания и отправки транзакции используйте метод **signAndSendTransaction**. Этот метод сначала подписывает транзакцию с помощью эфемерной пары ключей, созданной в ходе сессии, а затем отправляет подписанную транзакцию в сеть Solana.
 
 ```typescript
 const handleSendTransaction = async () => {
@@ -65,15 +63,15 @@ const handleSendTransaction = async () => {
 };
 ```
 
-The `signAndSendTransaction` method provides an extra layer of security by ensuring that the actual wallet's private key is not exposed. The ephemeral key pair stored on the client-side is used to sign the transaction, thus keeping the user's main wallet secure.
+Метод **signAndSendTransaction** обеспечивает дополнительный уровень безопасности, гарантируя, что приватный ключ основного кошелька не раскрывается. Для подписи транзакции используется эфемерная пара ключей, хранящаяся на стороне клиента, что позволяет сохранить безопасность основного кошелька пользователя.
 
-### Revoking a Session
+### Отзыв сессии
 
-To revoke a session, call the `revokeSession` method from the `sessionWallet`. This method performs three actions:
+Для отзыва сессии вызовите метод **revokeSession** у **sessionWallet**. Этот метод выполняет три действия:
 
-1. It removes the ephemeral key pair and the session token from the client-side storage.
-2. It revokes the session from the contract.
-3. Returns the lamports to the authority and closes the session token pda
+1. Удаляет эфемерную пару ключей и сессионный токен из хранилища на стороне клиента.
+2. Отзывает сессию в смарт-контракте.
+3. Возвращает лампорты владельцу и закрывает PDA сессионного токена.
 
 ```typescript
 const handleRevokeSession = async () => {
@@ -82,8 +80,8 @@ const handleRevokeSession = async () => {
 };
 ```
 
-Revoking a session ensures that the ephemeral key pair is no longer valid and usable.
+Отзыв сессии гарантирует, что эфемерная пара ключей больше не действительна и не может быть использована.
 
-These examples should help you get started with implementing session management and wallet functionality in your app.
+Эти примеры помогут вам начать реализацию управления сессиями и функционала кошелька в вашем приложении.
 
-_**Please refer to the "Create Post" section in the**_ [_**Example App**_](https://github.com/gumhq/gum-example-app) _**to see how the Session Token implementation is done.**_
+Обратитесь к разделу **"Create Post"** в примерном приложении, чтобы увидеть, как реализована работа с сессионным токеном.

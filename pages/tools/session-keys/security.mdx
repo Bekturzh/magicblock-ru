@@ -1,41 +1,40 @@
 ---
-title: "Security"
-description: "Key management and security model"
+title: "Безопасность "
+description: "Управление ключами и модель безопасности"
 ---
 
-## **Key Management**&#x20;
+## **Управление ключами**
 
-Key Management is an extremely important aspect of the security. One thing to note here however is that how securely one can manage the keys is platform dependent, for example a mobile app with access to local keystore/keychain is a lot more secure compared to a web browser.\
-\
-Our current client side key management is only on the web. Given the constraints, we do take adequate security measures on the browser.
-\
-The ephemeral keypair is encrypted and safely stored in the user's browser using IndexedDB, an in-browser database. When a user initiates an action, such as signing and sending a transaction, the session token signs the transaction using the temporary key pair. The smart contract can then validate the transaction, confirming that the user's wallet authorized the session token.\
+Управление ключами — это крайне важный аспект безопасности. Однако стоит отметить, что уровень безопасности управления ключами зависит от платформы: например, мобильное приложение с доступом к локальному хранилищу ключей (keystore/keychain) намного безопаснее, чем веб-браузер.
 
-1. Generate a random keypair using `web3.Keypair.generate()`
-2. Generate a random encryption key
-3. Using the encryption key encrypt the generated keypair.
-4. Store the encrypted key in IndexedDB
+В настоящее время управление ключами на стороне клиента у нас реализовано только в вебе. С учётом ограничений мы принимаем достаточные меры безопасности в браузере.\
+Эфемерная пара ключей шифруется и безопасно хранится в браузере пользователя с использованием IndexedDB — встроенной базы данных браузера. Когда пользователь инициирует действие, например подпись и отправку транзакции, сессионный токен подписывает транзакцию с помощью временной пары ключей. Смарт-контракт затем проверяет транзакцию, подтверждая, что кошелёк пользователя авторизовал сессионный токен.
 
-## Security Model
+- Сгенерировать случайную пару ключей с помощью `web3.Keypair.generate()`
+- Сгенерировать случайный ключ шифрования
+- С помощью ключа шифрования зашифровать сгенерированную пару ключей
+- Сохранить зашифрованный ключ в IndexedDB
 
-1\. The session keys are like your JWT Token adapted to web3
+## **Модель безопасности**
 
-2\. These keys have an expiry and a scope
+1. Сессионные ключи похожи на ваш JWT-токен, адаптированный для Web3.
+2. Эти ключи имеют срок действия и область применения.
+3. После истечения срока действия ключи не могут быть повторно использованы в целевой программе. Необходимо сгенерировать новый сессионный токен.
+4. Они также разработаны как отзывные, чтобы в худшем случае, если произойдёт какая-либо ошибка, поверхность атаки ограничивалась только эфемерной парой ключей и активами, содержащимися в ней, например 0,01 SOL.
 
-3\. Once the key has expired they can't be reused in the target program. A new session token is to be generated.
+### **Примечание о IndexedDB**
 
-4\. They are also designed to be revokable, so that in the worst case if something wrong happens the attack surface is limited to the ephemeral keypair and the assets contained in them. i.e **0.01 SOL**
+Веб-браузер — это крайне враждебная среда, и никакие меры безопасности там не могут быть полностью надёжными, начиная от cookies и сессий и заканчивая песочницей расширений.
 
-### Note on IndexedDB
+Злоумышленники всегда могут внедрить произвольный код через XSS или вредоносное расширение. Именно поэтому пользователям не рекомендуется хранить серьёзные средства в браузерных кошельках — они предназначены только для повседневных расходов. Важно чётко понимать, что сессионные ключи **не являются burner-кошельками**.
 
-Web Browser is an extremely adverserial environment, no amount of security is enough there, right from cookies to session to extension's sandbox.
+Однако большинство Web3 сегодня работает в веб-браузерах, и именно так пользователи взаимодействуют с другими dApp. Учитывая современные ограничения, мы проектируем систему вокруг них и усиливаем безопасность другими способами.
 
-Attackers could always inject arbitrary code via XSS or malicious extension. This is why users are discouraged from storing serious funds in a browser wallet, they are only for day to day expenses and it is really important to establish the distinction that **Session Keys are not burner wallets.**
+- Значительно ограничиваем возможности эфемерного подписанта — они строго зависят от контекста и конкретного кейса использования.
+- Это похоже на подход к JWT в типичной клиент-серверной архитектуре Web2.
 
-However, majority of web3 today is on web browsers and that's how users primarily interact with other dApps. Given the constraints of today, we have to **design around them** and **harden** them via other means.
+Например, сессионные или JWT-токены на Facebook, Twitter или банковских сайтах могут быть уязвимы к той же проблеме. Решение заключается в ограничении области действия токена, наличии интеллектуальных систем для их отзыва и введении 2FA при подозрительной активности.
 
-1. Drastically reduce the scope of what's possible with an ephemeral signer, they are highly context and use case specific.
-2. This is similar to the approach to JWT in a typical client server architecture in web2.
-3. &#x20;For example the session or JWT tokens on Facebook, twitter or even banking website could be vulnerable to the same issue. The way they address is this by **limiting the scope** of what **you can do with a token**, have **intelligent systems** in place to **revoke** them and further introduce 2FA for suspicious activity.
-4. We follow a similar model to limit the scope, we are also working on adding intelligent revocation systems which can revoke a compromised token as soon as we witness a malicious transaction like out of scope usage etc. **The absolute worst case scenario in terms of loss of funds is the 0.01 SOL topped up to pay for the gas fee.**
-5. Also**, developers can work around this today by pairing it with a gasless relay like octane and setting `topUp to false`**. However, we don't have a seamless way to do it directly from our SDK yet, although it is on our roadmap.
+Мы следуем аналогичной модели: ограничиваем область действия токена и работаем над интеллектуальной системой отзыва, которая может мгновенно отзывать скомпрометированный токен при обнаружении злонамеренной транзакции или использования вне области действия. В абсолютном худшем случае потеря средств ограничена 0,01 SOL, пополняемой для оплаты комиссии газа.
+
+Также **разработчики могут обойти это сегодня, используя gasless relay, например Octane, с параметром topUp=false**. Однако пока у нас нет бесшовного способа сделать это напрямую через SDK, хотя это находится в нашей дорожной карте.

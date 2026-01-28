@@ -1,14 +1,12 @@
 ---
-title: "Use session key manager"
-description:
-  "A custom React hook that manages the creation and revocation of session
-  tokens, and provides essential methods for signing and sending transactions in
-  a secure and user-friendly way"
+title: "Использование менеджера сессионных ключей"
+description: "
+Кастомный React-хук, который управляет созданием и отзывом сессионных токенов, а также предоставляет основные методы для безопасной и удобной подписи и отправки транзакций."
 ---
 
-`useSessionKeyManager` is a custom hook that takes an `AnchorWallet`, `Connection`, and `Cluster` as arguments and returns a `SessionWalletInterface`. This hook manages the session keys, tokens, and provides methods for signing and sending transactions.
+**useSessionKeyManager** — это кастомный хук, который принимает **AnchorWallet**, **Connection** и **Cluster** в качестве аргументов и возвращает **SessionWalletInterface**. Этот хук управляет сессионными ключами и токенами, а также предоставляет методы для подписи и отправки транзакций.
 
-The `SessionWalletInterface` consists of the following properties and methods:
+**SessionWalletInterface** состоит из следующих свойств и методов:
 
 ```typescript
 interface SessionWalletInterface {
@@ -60,7 +58,7 @@ interface SessionWalletInterface {
 }
 ```
 
-Here's an example of how to use the `useSessionKeyManager`:
+Пример использования **useSessionKeyManager**:
 
 ```typescript
 import { useAnchorWallet, useConnection } from '@solana/wallet-adapter-react';
@@ -83,4 +81,4 @@ function YourComponent() {
 }
 ```
 
-To use the Session Key Manager across multiple components, you can set up the Provider Component and Context in your application in the following section.
+Чтобы использовать **Session Key Manager** в нескольких компонентах, вы можете настроить компонент-провайдер и контекст в вашем приложении следующим образом.

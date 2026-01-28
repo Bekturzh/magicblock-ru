@@ -1,51 +1,54 @@
 ---
-title: "Introduction"
-description: "Real-time onchain data with MagicBlock Ephemeral Rollups"
+title: "Введение"
+description: "Данные в реальном времени на блокчейне с использованием MagicBlock Эфемер Роллап"
 ---
 
-## Oracles on MagicBlock
+## Ораклы в MagicBlock
 
-MagicBlock provides low‑latency, high‑throughput oracle data by ingesting <b>
- Pyth Lazer</b>
+**MagicBlock** предоставляет оракульные данные с низкой задержкой и высокой пропускной способностью, получая информацию через\
+ Pyth Lazer
 
-feeds and updating Ephemeral Rollup accounts at <b>
- 50–200 ms</b>
+источники данных и обновляя аккаунты **Эфемер Роллап** на\
+ 50–200 ms
 
-intervals (asset‑dependent).
+интервалах (в зависимости от актива).
 
 <CardGroup cols={3}>
-  <Card title="Live Demo" icon="waveform" iconType="duotone" href="https://pyth-template.magicblock.app/">
-    Real‑time price stream
+  <Card title="Демо" icon="waveform" iconType="duotone" href="https://pyth-template.magicblock.app/">
+    Поток цен в реальном времени
   </Card>
-  <Card title="Implementation" icon="book" iconType="duotone" href="/pages/tools/oracle/implementation">
-    Learn how to access our oracles onchain
+  <Card title="Реализация" icon="book" iconType="duotone" href="/pages/tools/oracle/implementation">
+    Узнайте, как получить доступ к нашим оракулам в ончейне
   </Card>
-  <Card title="Code Example" icon="code" iconType="duotone" href="https://github.com/magicblock-labs/real-time-pricing-oracle
+  <Card title="Пример кода" icon="code" iconType="duotone" href="https://github.com/magicblock-labs/real-time-pricing-oracle
 ">
-    Check out our Github Repo
+    Ознакомьтесь с нашим репозиторием на GitHub
   </Card>
 </CardGroup>
 
 <Note>
-  This Oracle example uses Pyth Lazer, but we can create Oracles for any arbitrary data source.
+  В этом примере оракула используется Pyth Lazer, но мы можем создавать оракулы для любых произвольных источников данных
 </Note>
 
-### What Are Onchain Oracles?
+### Что такое ончейн-оракулы?
 
-Onchain oracles deliver verifiable off‑chain data that programs can trust. Use cases range from asset prices to event outcomes.
+**«Ончейн-оракулы передают проверяемые офчейн-данные, которым могут доверять программы. Варианты использования варьируются от цен на активы до результатов событий.**
 
-On Solana, oracles typically keep accounts updated on‑chain. Programs read these accounts directly—no external API calls at execution time. We use <b>
- Pyth</b>
+**В сети Solana оракулы обычно поддерживают аккаунты, обновляемые ончейн. Программы читают эти аккаунты напрямую — без внешних API-вызовов во время выполнения. Мы используем**
 
-, a widely adopted cross‑chain oracle network.
+**Pyth** 
+
+Мы используем широко распространённую кроссчейн-сеть оракулов.
 
 ## Why Oracles Matter
 
-- **Finance**: liquidations, funding, TWAPs — inaccurate quotes cause loss and risk
-- **Games**: settle sports results; sync in‑game state with real‑world events
-- **Composability**: reliable, on‑chain data enables secure program composition
+**Финансы:** ликвидации, фандинг, TWAP — неточные котировки приводят к убыткам и рискам
 
-Accuracy and latency directly impact correctness, safety, and UX.
+**Игры:** расчёт спортивных результатов; синхронизация состояния игры с событиями реального мира
+
+**Композиционность:** надёжные ончейн-данные обеспечивают безопасную композицию программ
+
+**Точность и задержка напрямую влияют на корректность работы, безопасность и пользовательский опыт (UX).**
 
 ## Oracles on MagicBlock
 

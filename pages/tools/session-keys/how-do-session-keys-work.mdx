@@ -1,18 +1,18 @@
 ---
-title: "How do Session Keys work?"
-description: "What are Session Keys?"
+title: "Как работают сессионные ключи?"
+description: "Что такое сессионные ключи?"
 ---
 
-Session Keys are meant to be used as secondary signers in your program, especially for frequent interactions like liking a post or moving a piece in a game of chess where constant popups can get in the way of smooth user experience. **They are not burner wallets**.&#x20;
+Сессионные ключи предназначены для использования в качестве **вторичных подписантов** в вашей программе, особенно для частых действий — таких как лайк поста или ход фигурой в шахматной игре, — где постоянные всплывающие окна кошелька мешают плавному пользовательскому опыту. **Это не burner-кошельки.**
 
-Session Keys work in tandem with our on chain program to validate the token and it's scope.
+Сессионные ключи работают в связке с нашим ончейн-программным контрактом, который проверяет токен и область его действия (scope).
 
-## **Session Keys have two components**
+**Сессионные ключи состоят из двух компонентов:**
 
-1. An **Ephemeral Keypair**, intended to be used as a **secondary signer** in the target program.
-2. A **Session Token**, a PDA containing information about **expiry and scope** of the keypair.
+- **Эфемерная пара ключей (Ephemeral Keypair)** — используется как вторичный подписант в целевой программе.
+- **Сессионный токен (Session Token)** — PDA-аккаунт, содержащий информацию о сроке действия и области разрешений для данной пары ключей.
 
-## **How do they work?**
+## Как они работают?
 
 <img
   class="w-full h-auto max-w-5xl"
@@ -20,7 +20,7 @@ Session Keys work in tandem with our on chain program to validate the token and 
   src="/images/how_session_keys_work.png"
 />
 
-- Ephemeral Keys are stored on the client side, to invoke transactions.
-- The transactions invoked by these ephemeral keys are validated in the target program for their validity, expiry and scope.
-- Every transaction needs to present both the ephemeral signer and the session token
-- This is the general idea behind _account abstraction_, where instead of just an externally owned key there is also smart contract that enhances security.
+- Эфемерные ключи хранятся на стороне клиента для вызова транзакций.
+- Транзакции, вызванные этими эфемерными ключами, проверяются в целевой программе на их действительность, срок действия и область применения.
+- Каждая транзакция должна содержать как эфемерного подписанта, так и сессионный токен.
+- Это общая идея абстракции аккаунта, когда вместо одного внешне управляемого ключа используется также смарт-контракт, который повышает безопасность.

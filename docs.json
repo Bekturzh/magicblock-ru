@@ -219,7 +219,7 @@
               "pages/tools/session-keys/how-do-session-keys-work",
               "pages/tools/session-keys/security",
               {
-                "group": "Getting Started",
+                "group": "Начало работы",
                 "pages": [
                   "pages/tools/session-keys/integrating-sessions-in-your-program",
                   "pages/tools/session-keys/installation",
