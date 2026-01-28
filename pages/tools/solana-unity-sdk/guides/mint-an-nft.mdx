@@ -1,7 +1,6 @@
 ---
 title: "Минт NFT"
-description: "Для создания NFT мы будем взаимодействовать с программой [Token Metadata](https://docs.metaplex.com/programs/token-metadata/). Полный обзор см. в документации Metaplex: [Metaplex Documentation](https://docs.metaplex.com/).
-"
+description: "Для создания NFT мы будем взаимодействовать с программой [Token Metadata](https://docs.metaplex.com/programs/token-metadata/). Полный обзор см. в документации Metaplex: [Metaplex Documentation](https://docs.metaplex.com/). "
 ---
 
 Сначала необходимо создать новый **mint-аккаунт** для NFT, который вы хотите выпустить, и **associated token account** для его владения.
@@ -95,6 +94,6 @@ var res = await Web3.Wallet.SignAndSendTransaction(tx);
 Debug.Log(res.Result);
 ```
 
-В консоли будет выведена **подпись **[транзакции](https://explorer.solana.com/tx/TPSviDzpzTFEyfJkYwmQzqaPJTTsGMZTuPuG9q1LiKrhZnwg5WWHH7ARR8eYAdoB8rt8qcjKwqbcZj43b84Ls5C?cluster=devnet), которую можно проверить в инспекторе. Она будет выглядеть примерно так: 
+В консоли будет выведена подпись [транзакции](https://explorer.solana.com/tx/TPSviDzpzTFEyfJkYwmQzqaPJTTsGMZTuPuG9q1LiKrhZnwg5WWHH7ARR8eYAdoB8rt8qcjKwqbcZj43b84Ls5C?cluster=devnet), которую можно проверить в инспекторе. Она будет выглядеть примерно так:
 
 Вы можете найти **адрес mint** в обозревателе, который будет выглядеть примерно так: [NFT](https://explorer.solana.com/address/4X199VtLKVJUeLMXzwXzSsFgapVQcrYx9vnqxNDkH2Xa?cluster=devnet)
