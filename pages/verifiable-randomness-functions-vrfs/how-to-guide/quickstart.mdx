@@ -34,20 +34,16 @@ import QuickAccessVRF from "/snippets/quick-access-vrf.mdx";
 Любая программа на Solana может запрашивать и использовать проверяемую случайность (verifiable randomness) в сети за считанные секунды с помощью MagicBlock VRF SDK. К концу этого руководства у вас будет рабочий пример, который бросает кубик с использованием проверяемой случайности.
 
 <Steps>
-  <Step title={<a href="#1-write-program">Write your program</a>}>
+  <Step title={<a href="#1-write-program">Напишите вашу программу</a>}>
     Пишите вашу программу на Solana как обычно.
   </Step>
-  <Step title='
-<a href="#2-request-%26-consume-randomnness">
-Add request and consume randomness instructions.
-</a>
-'>
+  <Step title={<a href="#2-request-%26-consume-randomnness">Добавьте запрос и используйте инструкции по случайному использованию.</a>}>
     Добавьте CPI-хуки, которые запрашивают и используют случайность через обратный вызов от проверенного оракула.
   </Step>
-  <Step title={<a href="#3-deploy">Deploy your program on Solana</a>}>
+  <Step title={<a href="#3-deploy">Разверни свою программу на Solana</a>}>
     Разверните вашу программу на Solana с помощью Anchor CLI.
   </Step>
-  <Step title={<a href="#4-test">Execute transactions for onchain randomness.</a>}>
+  <Step title={<a href="#4-test">Выполняйте транзакции для обеспечения случайности в цепочке.</a>}>
     Отправляйте транзакции для генерации и использования случайности в сети.
   </Step>
 </Steps>
