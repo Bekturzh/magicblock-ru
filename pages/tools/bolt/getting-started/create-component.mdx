@@ -3,15 +3,15 @@ title: "Создать компонент"
 description: " "
 ---
 
-Components are plain data structures (classes or structs) that contain data relevant to a specific aspect of an entity. They don't have any logic or methods. Examples of components could be a "Position" component containing x, y, z coordinates.
+Компоненты — это простые структуры данных (классы или структуры), содержащие информацию, относящуюся к определённому аспекту сущности. Они не содержат логики или методов. Пример компонента — компонент «Position», который хранит координаты x, y, z.
 
-Create a Position component with
+Создайте компонент Position с
 
 ```bash
 bolt component position
 ```
 
-which will add a new component to your workspace:
+который добавит новый компонент в ваше рабочее пространство:
 
 ```rust
 use bolt_lang::*;
