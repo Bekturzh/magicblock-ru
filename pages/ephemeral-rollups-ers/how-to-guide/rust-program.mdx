@@ -54,7 +54,15 @@ Write program and add delegation instructions
   <Step title={<a href="#2-delegate">Delegate PDA on Base Layer</a>}>
     Добавьте CPI-хуки для делегирования, коммита и отмены делегирования аккаунтов состояния через сессии Эфимер Роллап
 
-    <Validators />
+    <Info>
+      Эти общедоступные средства проверки поддерживаются для разработки. Не забудьте добавить конкретный ER валидатор в свою инструкцию при делегировании:
+
+      - Азия ([devnet-as.magicblock.app](http://devnet-as.magicblock.app)): `MAS1Dt9qreoRMQ14YQuhg8UTZMMzDdKhmkZMECCzk57`
+      - Европа ([devnet-eu.magicblock.app](http://devnet-eu.magicblock.app)): `MEUGGrYPxKk17hCr7wpT6s8dtNokZj5U2L57vjYMS8e`
+      - США ([devnet-us.magicblock.app](http://devnet-us.magicblock.app)): `MUS3hc9TCw4cGC12vHNoYcCGzJG1txjgQLZWVoeNHNd`
+      - TEE ([tee.magicblock.app](http://tee.magicblock.app)): `FnE6VJT5QNZdedZPnCoLsARgBwoE6DeJNjBs2H1gySXA`
+      - Локальная служба поддержки ([localhost](http://localhost)): `mAGicPQYBMvcYveUZA5F5UNNwyHvfYh5xkLS2Fr1mev`
+    </Info>
   </Step>
   <Step title={<a href="#3-commit">Commit PDA on ER</a>}>
     Разверните вашу программу напрямую на Solana с помощью Solana CLI.
@@ -68,7 +76,14 @@ Write program and add delegation instructions
 
 ## Пример Счетчика
 
-<SoftwareRust />
+Могут потребоваться следующие пакеты программного обеспечения, другие версии также могут быть совместимы:
+
+| **Программное обеспечение** | **Версия** | **Руководство по установке**                                                  |
+| :-------------------------- | :--------- | :---------------------------------------------------------------------------- |
+| **Solana**                  | 2.3.13     | [<u>Установить Solana</u>](https://docs.anza.xyz/cli/install)                 |
+| **Rust**                    | 1.85.0     | [**<u>Установить Rust</u>**](https://rust-lang.org/tools/install/)            |
+| **Anchor**                  | 0.32.1     | [**<u>Установить Anchor</u>**](https://www.anchor-lang.com/docs/installation) |
+| \*\*Node \*\*               | 24.10.0    | [<u>Установить Node</u>](https://nodejs.org/en/download/current)              |
 
 ### Code Snippets
 
